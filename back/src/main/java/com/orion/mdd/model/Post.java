@@ -41,7 +41,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "topic_id", nullable = false)
-    private String topic;
+    private Topic topic;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
