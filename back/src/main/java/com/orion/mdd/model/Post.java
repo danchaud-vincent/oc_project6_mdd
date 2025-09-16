@@ -33,17 +33,18 @@ public class Post {
 
     private String title;
 
-    private String topic;
-
     private String content;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private Date createdDate;
 
-    @Column(name = "user_id")
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "topic_id", nullable = false)
+    private String topic;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User author;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
