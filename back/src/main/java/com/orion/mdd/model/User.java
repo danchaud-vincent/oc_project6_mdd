@@ -2,8 +2,6 @@ package com.orion.mdd.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -38,9 +36,7 @@ public class User {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST
-    })
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_topic", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "topic_id"))
     @Builder.Default
     private List<Topic> topics = new ArrayList<>();
