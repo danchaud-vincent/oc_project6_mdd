@@ -1,6 +1,7 @@
 package com.orion.mdd.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "posts")
 public class Post {
 
     @Id
@@ -37,7 +40,7 @@ public class Post {
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
-    private Date createdDate;
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "topic_id", nullable = false)
@@ -48,6 +51,7 @@ public class Post {
     private User author;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "comment_id")
-    private List<Comment> comments;
+    @JoinColumn(name = "post_id")
+    @Builder.Default
+    private List<Comment> comments = new ArrayList<>();
 }
