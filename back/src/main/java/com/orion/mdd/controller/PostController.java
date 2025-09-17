@@ -3,13 +3,14 @@ package com.orion.mdd.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orion.mdd.dto.PostDTO;
-import com.orion.mdd.mapper.PostMapper;
 import com.orion.mdd.model.Post;
 import com.orion.mdd.service.PostService;
 
@@ -21,14 +22,15 @@ import lombok.RequiredArgsConstructor;
 public class PostController {
 
     private final PostService postService;
-    private final PostMapper postMapper;
 
     @GetMapping("/posts")
     public ResponseEntity<List<PostDTO>> getPosts() {
+        return new ResponseEntity<List<PostDTO>>(postService.getPosts(), HttpStatus.OK);
+    }
 
-        List<Post> posts = postService.getPosts();
-
-        return new ResponseEntity<List<PostDTO>>(postMapper.toDto(posts), HttpStatus.OK);
+    @GetMapping("/posts/{postId}")
+    public ResponseEntity<PostDTO> getPostById(@PathVariable Integer postId) {
+        return new ResponseEntity<PostDTO>(postService.getPostById(postId), HttpStatus.OK);
     }
 
 }
