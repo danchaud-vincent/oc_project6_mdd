@@ -21,12 +21,14 @@ public class DataInitializer implements CommandLineRunner {
         private final UserRepository userRepo;
         private final TopicRepository topicRepo;
         private final PostRepository postRepo;
+        private final CommentRepository commentRepo;
 
         public DataInitializer(UserRepository userRepo, TopicRepository topicRepo,
                         PostRepository postRepo, CommentRepository commentRepo) {
                 this.userRepo = userRepo;
                 this.topicRepo = topicRepo;
                 this.postRepo = postRepo;
+                this.commentRepo = commentRepo;
         }
 
         @Override
@@ -74,6 +76,7 @@ public class DataInitializer implements CommandLineRunner {
                 topicRepo.save(topic2);
                 topicRepo.save(topic3);
 
+                // user subscriptions
                 user1.setTopics(List.of(topic1, topic2));
                 user2.setTopics(List.of(topic2, topic3));
                 user3.setTopics(List.of(topic1, topic3));
@@ -107,26 +110,29 @@ public class DataInitializer implements CommandLineRunner {
                                 .topic(topic3)
                                 .build();
 
-                // COMMENTS
+                postRepo.save(post1);
+                postRepo.save(post2);
+                postRepo.save(post3);
+
+                // ADD COMMENTS
                 Comment comment1 = Comment.builder()
                                 .content("Very informative post, thanks!")
+                                .post(post1)
+                                .createdBy(user1)
                                 .build();
 
                 Comment comment2 = Comment.builder()
                                 .content("I prefer using functional programming with streams.")
+                                .post(post2)
+                                .createdBy(user2)
                                 .build();
 
                 Comment comment3 = Comment.builder()
                                 .content("Great comparison between SQL and NoSQL!")
+                                .post(post3)
+                                .createdBy(user3)
                                 .build();
 
-                // SAVE POSTS WITH COMMMENTS USING RELATION
-                post1.getComments().add(comment1);
-                post2.getComments().add(comment2);
-                post3.getComments().add(comment3);
-
-                postRepo.save(post1);
-                postRepo.save(post2);
-                postRepo.save(post3);
+                commentRepo.saveAll(List.of(comment1, comment2, comment3));
         }
 }
