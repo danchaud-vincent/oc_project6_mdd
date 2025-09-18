@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface PostMapper {
@@ -24,5 +25,12 @@ public interface PostMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     Post toEntity(PostRequest postRequest, User author, Topic topic);
+
+    @Mapping(target = "postId", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "author", ignore = true)
+    @Mapping(target = "topic", ignore = true)
+    void updateFromRequest(PostRequest postRequest, @MappingTarget Post existingPost);
 
 }
