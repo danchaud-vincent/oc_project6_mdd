@@ -88,9 +88,12 @@ public class PostController {
     }
 
     @DeleteMapping("/{postId}/comments/{commentId}")
-    public String deleteCommentById(@PathVariable Integer postId, @PathVariable Integer commentId) {
+    public ResponseEntity<String> deletePostComment(@PathVariable Integer postId, @PathVariable Integer commentId) {
 
-        return "deleted";
+        commentService.deletePostComment(postId, commentId);
+
+        return new ResponseEntity<String>(
+                String.format("Comment ID: %s is deleted from Post ID: %s", commentId, postId), HttpStatus.OK);
     }
 
 }
