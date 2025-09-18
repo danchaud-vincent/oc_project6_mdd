@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orion.mdd.dto.PostDTO;
+import com.orion.mdd.model.Post;
 import com.orion.mdd.payload.request.PostRequest;
 import com.orion.mdd.service.PostService;
 
@@ -27,26 +28,32 @@ public class PostController {
 
     @GetMapping()
     public ResponseEntity<List<PostDTO>> getPosts() {
-        return new ResponseEntity<List<PostDTO>>(postService.getPosts(), HttpStatus.OK);
+
+        List<PostDTO> postsDTO = postService.getPosts();
+
+        return new ResponseEntity<List<PostDTO>>(postsDTO, HttpStatus.OK);
     }
 
     @GetMapping("/{postId}")
     public ResponseEntity<PostDTO> getPostById(@PathVariable Integer postId) {
-        return new ResponseEntity<PostDTO>(postService.getPostById(postId), HttpStatus.OK);
+
+        PostDTO postDTO = postService.getPostById(postId);
+
+        return new ResponseEntity<PostDTO>(postDTO, HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<PostDTO> createPost(@RequestBody PostRequest postCreateRequest) {
+    public ResponseEntity<PostDTO> createPost(@RequestBody PostRequest postRequest) {
 
-        PostDTO postDTO = postService.createPost(postCreateRequest);
+        PostDTO postDTO = postService.createPost(postRequest);
 
         return new ResponseEntity<PostDTO>(postDTO, HttpStatus.CREATED);
     }
 
     @PutMapping("/{postId}")
-    public ResponseEntity<PostDTO> updatePostById(@PathVariable Integer postId, @RequestBody String entity) {
+    public ResponseEntity<PostDTO> updatePostById(@PathVariable Integer postId, @RequestBody PostRequest postRequest) {
 
-        PostDTO postUpdatedDTO = postService.updatedPostById(postId);
+        PostDTO postUpdatedDTO = postService.updatedPostById(postId, postRequest);
 
         return new ResponseEntity<PostDTO>(postUpdatedDTO, HttpStatus.OK);
     }
