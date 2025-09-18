@@ -3,6 +3,7 @@ package com.orion.mdd.model;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,6 +38,10 @@ public class Post {
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at", updatable = true)
+    private LocalDateTime updatedAt;
 
     @ManyToOne
     @JoinColumn(name = "topic_id", nullable = false)
