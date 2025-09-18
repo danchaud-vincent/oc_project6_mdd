@@ -82,7 +82,7 @@ public class PostController {
     public ResponseEntity<CommentDTO> createComment(@PathVariable Integer postId,
             @RequestBody CommentRequest commentRequest) {
 
-        CommentDTO commentDTO = postService.createComment(postId, commentRequest);
+        CommentDTO commentDTO = commentService.createComment(postId, commentRequest);
 
         return new ResponseEntity<CommentDTO>(commentDTO, HttpStatus.CREATED);
     }
