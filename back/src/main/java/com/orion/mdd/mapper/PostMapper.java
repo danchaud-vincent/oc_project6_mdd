@@ -6,21 +6,19 @@ import com.orion.mdd.model.Topic;
 import com.orion.mdd.model.User;
 import com.orion.mdd.payload.request.PostCreateRequest;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface PostMapper extends EntityMapper<PostDTO, Post> {
+public interface PostMapper {
 
-    @Override
     @Mapping(source = "author.username", target = "authorName")
     @Mapping(source = "topic.name", target = "topicName")
     PostDTO toDto(Post post);
 
-    @Override
-    @Mapping(source = "authorName", target = "author.username")
-    @Mapping(source = "topicName", target = "topic.name")
-    Post toEntity(PostDTO postDTO);
+    List<PostDTO> toDto(List<Post> posts);
 
     @Mapping(target = "postId", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
