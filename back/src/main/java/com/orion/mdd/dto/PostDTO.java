@@ -15,7 +15,8 @@ public class PostDTO {
     private String title;
     private String content;
     private LocalDateTime createdAt;
-    private TopicDTO topic;
-    private UserDTO author;
+    private LocalDateTime updatedAt;
+    private String topicName;
+    private String authorName;
 
 }
