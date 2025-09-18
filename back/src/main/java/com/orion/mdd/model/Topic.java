@@ -24,7 +24,7 @@ public class Topic {
     @Column(name = "topic_id")
     private Integer topicId;
 
-    private String title;
+    private String name;
 
     private String description;
 }
