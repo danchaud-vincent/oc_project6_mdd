@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,9 +55,17 @@ public class PostController {
     @PutMapping("/{postId}")
     public ResponseEntity<PostDTO> updatePostById(@PathVariable Integer postId, @RequestBody PostRequest postRequest) {
 
-        PostDTO postUpdatedDTO = postService.updatedPostById(postId, postRequest);
+        PostDTO postUpdatedDTO = postService.updatePostById(postId, postRequest);
 
         return new ResponseEntity<PostDTO>(postUpdatedDTO, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<String> deletePostById(@PathVariable Integer postId) {
+
+        postService.deletePostById(postId);
+
+        return new ResponseEntity<String>(String.format("Post with ID %s is deleted!", postId), HttpStatus.OK);
     }
 
     @GetMapping("/{postId}/comments")
