@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PostDTO {
 
-    private Integer postId;
+    private Integer id;
     private String title;
     private String content;
     private LocalDateTime createdAt;
