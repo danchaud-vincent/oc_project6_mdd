@@ -58,17 +58,17 @@ public class DataInitializer implements CommandLineRunner {
 
                 // ADD TOPICS
                 Topic topic1 = Topic.builder()
-                                .title("Spring Boot")
+                                .name("Spring Boot")
                                 .description("Discussion about Spring Boot projects")
                                 .build();
 
                 Topic topic2 = Topic.builder()
-                                .title("Java")
+                                .name("Java")
                                 .description("General Java programming topics")
                                 .build();
 
                 Topic topic3 = Topic.builder()
-                                .title("Databases")
+                                .name("Databases")
                                 .description("All about SQL and NoSQL databases")
                                 .build();
 
