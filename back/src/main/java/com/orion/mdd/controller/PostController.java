@@ -71,7 +71,7 @@ public class PostController {
     }
 
     @GetMapping("/{postId}/comments")
-    public ResponseEntity<List<CommentDTO>> getMethodName(@PathVariable Integer postId) {
+    public ResponseEntity<List<CommentDTO>> getCommentsByPost(@PathVariable Integer postId) {
 
         List<CommentDTO> commentsDTO = commentService.getCommentsByPost(postId);
 
@@ -79,10 +79,10 @@ public class PostController {
     }
 
     @PostMapping("/{postId}/comments")
-    public ResponseEntity<CommentDTO> createComment(@PathVariable Integer postId,
+    public ResponseEntity<CommentDTO> addCommentToPost(@PathVariable Integer postId,
             @RequestBody CommentRequest commentRequest) {
 
-        CommentDTO commentDTO = commentService.createComment(postId, commentRequest);
+        CommentDTO commentDTO = commentService.addCommentToPost(postId, commentRequest);
 
         return new ResponseEntity<CommentDTO>(commentDTO, HttpStatus.CREATED);
     }

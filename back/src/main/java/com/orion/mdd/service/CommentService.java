@@ -34,7 +34,7 @@ public class CommentService {
         return commentMapper.toDto(comments);
     }
 
-    public CommentDTO createComment(Integer postId, CommentRequest commentRequest) {
+    public CommentDTO addCommentToPost(Integer postId, CommentRequest commentRequest) {
         // Get Post
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("Post Not found with ID: " + postId));
