@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CommentDTO {
 
+    private Integer commentId;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
