@@ -14,6 +14,7 @@ import com.orion.mdd.dto.CommentDTO;
 import com.orion.mdd.dto.PostDTO;
 import com.orion.mdd.payload.request.CommentRequest;
 import com.orion.mdd.payload.request.PostRequest;
+import com.orion.mdd.service.CommentService;
 import com.orion.mdd.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class PostController {
 
     private final PostService postService;
+    private final CommentService commentService;
 
     @GetMapping()
     public ResponseEntity<List<PostDTO>> getPosts() {
@@ -71,7 +73,7 @@ public class PostController {
     @GetMapping("/{postId}/comments")
     public ResponseEntity<List<CommentDTO>> getMethodName(@PathVariable Integer postId) {
 
-        List<CommentDTO> commentsDTO = postService.getComments(postId);
+        List<CommentDTO> commentsDTO = commentService.getCommentsByPost(postId);
 
         return new ResponseEntity<>(commentsDTO, HttpStatus.OK);
     }
@@ -83,6 +85,12 @@ public class PostController {
         CommentDTO commentDTO = postService.createComment(postId, commentRequest);
 
         return new ResponseEntity<CommentDTO>(commentDTO, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{postId}/comments/{commentId}")
+    public String deleteCommentById(@PathVariable Integer postId, @PathVariable Integer commentId) {
+
+        return "deleted";
     }
 
 }
