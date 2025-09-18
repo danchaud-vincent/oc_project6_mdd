@@ -4,7 +4,7 @@ import com.orion.mdd.dto.PostDTO;
 import com.orion.mdd.model.Post;
 import com.orion.mdd.model.Topic;
 import com.orion.mdd.model.User;
-import com.orion.mdd.payload.request.PostCreateRequest;
+import com.orion.mdd.payload.request.PostRequest;
 
 import java.util.List;
 
@@ -23,6 +23,6 @@ public interface PostMapper {
     @Mapping(target = "postId", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    Post toEntity(PostCreateRequest postRequest, User author, Topic topic);
+    Post toEntity(PostRequest postRequest, User author, Topic topic);
 
 }

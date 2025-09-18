@@ -9,7 +9,7 @@ import com.orion.mdd.mapper.PostMapper;
 import com.orion.mdd.model.Post;
 import com.orion.mdd.model.Topic;
 import com.orion.mdd.model.User;
-import com.orion.mdd.payload.request.PostCreateRequest;
+import com.orion.mdd.payload.request.PostRequest;
 import com.orion.mdd.repository.PostRepository;
 import com.orion.mdd.repository.TopicRepository;
 import com.orion.mdd.repository.UserRepository;
@@ -38,7 +38,7 @@ public class PostService {
         return postMapper.toDto(post);
     }
 
-    public PostDTO createPost(PostCreateRequest postCreateRequest) {
+    public PostDTO createPost(PostRequest postCreateRequest) {
         // Find user by id
         User user = userRepository.findById(postCreateRequest.getAuthorId())
                 .orElseThrow(() -> new RuntimeException("User not found with ID: " +
@@ -54,6 +54,14 @@ public class PostService {
         Post newPostSaved = postRepository.save(newPost);
 
         return postMapper.toDto(newPostSaved);
+    }
+
+    public PostDTO updatedPostById(Integer postId) {
+        // Get post by id
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Post not found with ID: " + postId));
+
+        return postMapper.toDto(post);
     }
 
 }
