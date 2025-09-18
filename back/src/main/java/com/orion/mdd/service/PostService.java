@@ -56,12 +56,22 @@ public class PostService {
         return postMapper.toDto(newPostSaved);
     }
 
-    public PostDTO updatedPostById(Integer postId) {
+    public PostDTO updatedPostById(Integer postId, PostRequest postRequest) {
         // Get post by id
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("Post not found with ID: " + postId));
 
-        return postMapper.toDto(post);
+        // Get topic by id
+        Topic topic = topicRepository.findById(postRequest.getTopicId())
+                .orElseThrow(() -> new RuntimeException("Topic not found with ID: " + postRequest.getTopicId()));
+
+        // update existing post
+        postMapper.updateFromRequest(postRequest, post);
+        post.setTopic(topic); // set the new topic if changed
+
+        Post postSaved = postRepository.save(post);
+
+        return postMapper.toDto(postSaved);
     }
 
 }
