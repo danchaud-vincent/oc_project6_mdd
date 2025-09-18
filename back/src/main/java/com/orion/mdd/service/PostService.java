@@ -16,6 +16,7 @@ import com.orion.mdd.repository.PostRepository;
 import com.orion.mdd.repository.TopicRepository;
 import com.orion.mdd.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -42,6 +43,7 @@ public class PostService {
         return postMapper.toDto(post);
     }
 
+    @Transactional
     public PostDTO createPost(PostRequest postCreateRequest) {
         // Find user by id
         User user = userRepository.findById(postCreateRequest.getAuthorId())
@@ -60,6 +62,7 @@ public class PostService {
         return postMapper.toDto(newPostSaved);
     }
 
+    @Transactional
     public PostDTO updatePostById(Integer postId, PostRequest postRequest) {
         // Get post by id
         Post post = postRepository.findById(postId)
@@ -78,6 +81,7 @@ public class PostService {
         return postMapper.toDto(postSaved);
     }
 
+    @Transactional
     public void deletePostById(Integer postId) {
         // Get the post
         Post postToDelete = postRepository.findById(postId)
