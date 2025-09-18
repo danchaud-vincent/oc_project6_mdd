@@ -81,21 +81,6 @@ public class PostService {
         return postMapper.toDto(postSaved);
     }
 
-    public CommentDTO createComment(Integer postId, CommentRequest commentRequest) {
-        // Get Post
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new RuntimeException("Post Not found with ID: " + postId));
-
-        User user = userRepository.findById(commentRequest.getAuthorId())
-                .orElseThrow(() -> new RuntimeException("User not found with ID: " + commentRequest.getAuthorId()));
-
-        Comment comment = commentMapper.toEntity(commentRequest, user, post);
-
-        Comment commentSaved = commentRepository.save(comment);
-
-        return commentMapper.tDto(commentSaved);
-    }
-
     public void deletePostById(Integer postId) {
         // Get the post
         Post postToDelete = postRepository.findById(postId)
