@@ -118,19 +118,19 @@ public class DataInitializer implements CommandLineRunner {
                 Comment comment1 = Comment.builder()
                                 .content("Very informative post, thanks!")
                                 .post(post1)
-                                .createdBy(user1)
+                                .author(user1)
                                 .build();
 
                 Comment comment2 = Comment.builder()
                                 .content("I prefer using functional programming with streams.")
                                 .post(post2)
-                                .createdBy(user2)
+                                .author(user2)
                                 .build();
 
                 Comment comment3 = Comment.builder()
                                 .content("Great comparison between SQL and NoSQL!")
                                 .post(post3)
-                                .createdBy(user3)
+                                .author(user3)
                                 .build();
 
                 commentRepo.saveAll(List.of(comment1, comment2, comment3));
