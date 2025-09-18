@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orion.mdd.dto.PostDTO;
-import com.orion.mdd.model.Post;
+import com.orion.mdd.model.Comment;
 import com.orion.mdd.payload.request.PostRequest;
 import com.orion.mdd.service.PostService;
 
@@ -56,6 +56,14 @@ public class PostController {
         PostDTO postUpdatedDTO = postService.updatedPostById(postId, postRequest);
 
         return new ResponseEntity<PostDTO>(postUpdatedDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/{postId}/comments")
+    public ResponseEntity<List<Comment>> getMethodName(@PathVariable Integer postId) {
+
+        List<Comment> comments = postService.getComments(postId);
+
+        return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
 }
