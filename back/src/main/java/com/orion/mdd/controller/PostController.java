@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.orion.mdd.dto.CommentDTO;
 import com.orion.mdd.dto.PostDTO;
+import com.orion.mdd.payload.request.CommentRequest;
 import com.orion.mdd.payload.request.PostRequest;
 import com.orion.mdd.service.PostService;
 
@@ -64,6 +65,15 @@ public class PostController {
         List<CommentDTO> commentsDTO = postService.getComments(postId);
 
         return new ResponseEntity<>(commentsDTO, HttpStatus.OK);
+    }
+
+    @PostMapping("/{postId}/comments")
+    public ResponseEntity<CommentDTO> createComment(@PathVariable Integer postId,
+            @RequestBody CommentRequest commentRequest) {
+
+        CommentDTO commentDTO = postService.createComment(postId, commentRequest);
+
+        return new ResponseEntity<CommentDTO>(commentDTO, HttpStatus.CREATED);
     }
 
 }
