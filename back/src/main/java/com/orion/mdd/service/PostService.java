@@ -4,15 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.orion.mdd.dto.CommentDTO;
 import com.orion.mdd.dto.PostDTO;
 import com.orion.mdd.mapper.CommentMapper;
 import com.orion.mdd.mapper.PostMapper;
-import com.orion.mdd.model.Comment;
 import com.orion.mdd.model.Post;
 import com.orion.mdd.model.Topic;
 import com.orion.mdd.model.User;
-import com.orion.mdd.payload.request.CommentRequest;
 import com.orion.mdd.payload.request.PostRequest;
 import com.orion.mdd.repository.CommentRepository;
 import com.orion.mdd.repository.PostRepository;
