@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class TopicDTO {
 
     private Integer topicId;
-    private String title;
+    private String name;
     private String description;
 
 }
