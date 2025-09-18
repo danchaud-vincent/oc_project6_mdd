@@ -12,6 +12,7 @@ import com.orion.mdd.model.Comment;
 import com.orion.mdd.model.Post;
 import com.orion.mdd.model.Topic;
 import com.orion.mdd.model.User;
+import com.orion.mdd.payload.request.CommentRequest;
 import com.orion.mdd.payload.request.PostRequest;
 import com.orion.mdd.repository.CommentRepository;
 import com.orion.mdd.repository.PostRepository;
@@ -87,6 +88,21 @@ public class PostService {
         List<Comment> comments = commentRepository.findByPostId(postId);
 
         return commentMapper.toDto(comments);
+    }
+
+    public CommentDTO createComment(Integer postId, CommentRequest commentRequest) {
+        // Get Post
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Post Not found with ID: " + postId));
+
+        User user = userRepository.findById(commentRequest.getAuthorId())
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + commentRequest.getAuthorId()));
+
+        Comment comment = commentMapper.toEntity(commentRequest, user, post);
+
+        Comment commentSaved = commentRepository.save(comment);
+
+        return commentMapper.tDto(commentSaved);
     }
 
 }
