@@ -14,6 +14,7 @@ import com.orion.mdd.repository.CommentRepository;
 import com.orion.mdd.repository.PostRepository;
 import com.orion.mdd.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -34,6 +35,7 @@ public class CommentService {
         return commentMapper.toDto(comments);
     }
 
+    @Transactional
     public CommentDTO addCommentToPost(Integer postId, CommentRequest commentRequest) {
         // Get Post
         Post post = postRepository.findById(postId)
@@ -44,9 +46,23 @@ public class CommentService {
 
         Comment comment = commentMapper.toEntity(commentRequest, user, post);
 
+        // save comment in the post
         Comment commentSaved = commentRepository.save(comment);
 
         return commentMapper.tDto(commentSaved);
+    }
+
+    @Transactional
+    public void deletePostComment(Integer postId, Integer commentId) {
+        // Get Post
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Post Not found with ID: " + postId));
+
+        // Get Comment
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new RuntimeException("Comment Not found with ID: " + commentId));
+
+        post.removeComment(comment);
     }
 
 }
