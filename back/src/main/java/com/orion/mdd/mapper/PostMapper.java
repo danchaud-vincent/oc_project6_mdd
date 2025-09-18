@@ -20,6 +20,7 @@ public interface PostMapper extends EntityMapper<PostDTO, Post> {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "comments", ignore = true)
     Post toEntity(PostRequest postRequest, User author, Topic topic);
 
     @Mapping(target = "id", ignore = true)
@@ -27,6 +28,7 @@ public interface PostMapper extends EntityMapper<PostDTO, Post> {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "author", ignore = true)
     @Mapping(target = "topic", ignore = true)
+    @Mapping(target = "comments", ignore = true)
     void updateFromRequest(PostRequest postRequest, @MappingTarget Post existingPost);
 
 }
