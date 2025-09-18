@@ -63,7 +63,7 @@ public class PostService {
         return postMapper.toDto(newPostSaved);
     }
 
-    public PostDTO updatedPostById(Integer postId, PostRequest postRequest) {
+    public PostDTO updatePostById(Integer postId, PostRequest postRequest) {
         // Get post by id
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("Post not found with ID: " + postId));
@@ -103,6 +103,14 @@ public class PostService {
         Comment commentSaved = commentRepository.save(comment);
 
         return commentMapper.tDto(commentSaved);
+    }
+
+    public void deletePostById(Integer postId) {
+        // Get the post
+        Post postToDelete = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Post not found with ID: " + postId));
+
+        postRepository.delete(postToDelete);
     }
 
 }
