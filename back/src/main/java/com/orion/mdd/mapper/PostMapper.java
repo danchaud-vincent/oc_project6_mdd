@@ -21,12 +21,12 @@ public interface PostMapper {
 
     List<PostDTO> toDto(List<Post> posts);
 
-    @Mapping(target = "postId", ignore = true)
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     Post toEntity(PostRequest postRequest, User author, Topic topic);
 
-    @Mapping(target = "postId", ignore = true)
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "author", ignore = true)
