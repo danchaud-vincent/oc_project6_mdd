@@ -44,7 +44,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User createdBy;
+    private User author;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
