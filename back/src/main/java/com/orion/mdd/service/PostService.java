@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.orion.mdd.dto.CommentDTO;
 import com.orion.mdd.dto.PostDTO;
+import com.orion.mdd.mapper.CommentMapper;
 import com.orion.mdd.mapper.PostMapper;
 import com.orion.mdd.model.Comment;
 import com.orion.mdd.model.Post;
@@ -27,6 +29,7 @@ public class PostService {
     private final TopicRepository topicRepository;
     private final CommentRepository commentRepository;
     private final PostMapper postMapper;
+    private final CommentMapper commentMapper;
 
     public List<PostDTO> getPosts() {
         List<Post> posts = postRepository.findAll();
@@ -77,13 +80,13 @@ public class PostService {
         return postMapper.toDto(postSaved);
     }
 
-    public List<Comment> getComments(Integer postId) {
+    public List<CommentDTO> getComments(Integer postId) {
         // check if post exist
         postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found with ID: " + postId));
 
         List<Comment> comments = commentRepository.findByPostId(postId);
 
-        return comments;
+        return commentMapper.toDto(comments);
     }
 
 }
