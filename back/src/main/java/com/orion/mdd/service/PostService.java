@@ -81,15 +81,6 @@ public class PostService {
         return postMapper.toDto(postSaved);
     }
 
-    public List<CommentDTO> getComments(Integer postId) {
-        // check if post exist
-        postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found with ID: " + postId));
-
-        List<Comment> comments = commentRepository.findByPostId(postId);
-
-        return commentMapper.toDto(comments);
-    }
-
     public CommentDTO createComment(Integer postId, CommentRequest commentRequest) {
         // Get Post
         Post post = postRepository.findById(postId)
