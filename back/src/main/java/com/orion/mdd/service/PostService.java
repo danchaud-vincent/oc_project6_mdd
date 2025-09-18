@@ -6,10 +6,12 @@ import org.springframework.stereotype.Service;
 
 import com.orion.mdd.dto.PostDTO;
 import com.orion.mdd.mapper.PostMapper;
+import com.orion.mdd.model.Comment;
 import com.orion.mdd.model.Post;
 import com.orion.mdd.model.Topic;
 import com.orion.mdd.model.User;
 import com.orion.mdd.payload.request.PostRequest;
+import com.orion.mdd.repository.CommentRepository;
 import com.orion.mdd.repository.PostRepository;
 import com.orion.mdd.repository.TopicRepository;
 import com.orion.mdd.repository.UserRepository;
@@ -23,6 +25,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final TopicRepository topicRepository;
+    private final CommentRepository commentRepository;
     private final PostMapper postMapper;
 
     public List<PostDTO> getPosts() {
@@ -72,6 +75,15 @@ public class PostService {
         Post postSaved = postRepository.save(post);
 
         return postMapper.toDto(postSaved);
+    }
+
+    public List<Comment> getComments(Integer postId) {
+        // check if post exist
+        postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found with ID: " + postId));
+
+        List<Comment> comments = commentRepository.findByPostId(postId);
+
+        return comments;
     }
 
 }
