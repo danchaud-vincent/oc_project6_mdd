@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orion.mdd.payload.request.LoginRequest;
+import com.orion.mdd.payload.request.RegisterRequest;
 import com.orion.mdd.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,13 @@ public class AuthController {
     public String login(@RequestBody LoginRequest loginRequest) {
 
         return "Logged in";
+    }
+
+    @PostMapping("/register")
+    public String register(@RequestBody RegisterRequest registerRequest) {
+        // TODO: process POST request
+
+        return "Registered!";
     }
 
 }
