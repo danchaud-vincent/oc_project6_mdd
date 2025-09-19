@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.orion.mdd.dto.TopicDTO;
 import com.orion.mdd.mapper.TopicMapper;
 import com.orion.mdd.model.Topic;
+import com.orion.mdd.payload.request.TopicRequest;
 import com.orion.mdd.repository.TopicRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,14 @@ public class TopicService {
         List<Topic> topics = topicRepository.findAll();
 
         return topicMapper.toDto(topics);
+    }
+
+    public TopicDTO createTopic(TopicRequest topicRequest) {
+
+        Topic newTopic = topicMapper.toEntity(topicRequest);
+        Topic topicSaved = topicRepository.save(newTopic);
+
+        return topicMapper.toDto(topicSaved);
     }
 
 }
