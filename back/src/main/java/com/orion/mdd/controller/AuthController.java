@@ -8,6 +8,9 @@ import com.orion.mdd.payload.request.RegisterRequest;
 import com.orion.mdd.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -19,16 +22,15 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
 
-        return "Logged in";
+        return new ResponseEntity<String>(authService.authenticate(loginRequest), HttpStatus.OK);
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody RegisterRequest registerRequest) {
-        // TODO: process POST request
+    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
 
-        return "Registered!";
+        return new ResponseEntity<String>(authService.register(registerRequest), HttpStatus.OK);
     }
 
 }
