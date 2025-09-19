@@ -1,5 +1,7 @@
 package com.orion.mdd.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -10,7 +12,7 @@ import com.orion.mdd.model.User;
 import com.orion.mdd.payload.request.CommentRequest;
 
 @Mapper(componentModel = "spring")
-public interface CommentMapper extends EntityMapper<CommentDTO, Comment> {
+public interface CommentMapper {
 
     @Mapping(source = "author.username", target = "authorName")
     CommentDTO tDto(Comment comment);
@@ -22,4 +24,6 @@ public interface CommentMapper extends EntityMapper<CommentDTO, Comment> {
     @Mapping(source = "author", target = "author")
     @Mapping(source = "commentRequest.content", target = "content")
     Comment toEntity(CommentRequest commentRequest, User author, Post post);
+
+    List<CommentDTO> toDto(List<Comment> commentList);
 }
