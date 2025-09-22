@@ -3,6 +3,7 @@ package com.orion.mdd.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.orion.mdd.dto.UserDTO;
 import com.orion.mdd.payload.request.LoginRequest;
 import com.orion.mdd.payload.request.RegisterRequest;
 import com.orion.mdd.service.AuthService;
@@ -28,9 +29,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<UserDTO> register(@RequestBody RegisterRequest registerRequest) {
 
-        return new ResponseEntity<String>(authService.register(registerRequest), HttpStatus.OK);
+        return new ResponseEntity<UserDTO>(authService.register(registerRequest), HttpStatus.OK);
     }
 
 }
