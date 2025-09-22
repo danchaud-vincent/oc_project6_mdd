@@ -1,6 +1,5 @@
 package com.orion.mdd.dto;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,5 @@ public class UserDTO {
     private Integer id;
     private String username;
     private String email;
-    private String password;
-    private List<TopicDTO> topics;
 
 }
