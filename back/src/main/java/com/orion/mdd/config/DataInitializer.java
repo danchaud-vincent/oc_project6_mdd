@@ -37,19 +37,19 @@ public class DataInitializer implements CommandLineRunner {
                 User user1 = User.builder()
                                 .username("alice")
                                 .email("alice@example.com")
-                                .password("password1")
+                                .password("$2a$12$7ldozOyiHXESXFW3AVtAcumGhV2BJRTfFrbTuwa3Zsz.wJgNvlu3e") // password1
                                 .build();
 
                 User user2 = User.builder()
                                 .username("bob")
                                 .email("bob@example.com")
-                                .password("password2")
+                                .password("$2a$12$ogSxnHhZ8THBw98UeAZJJOxcc1UsmqaNwA7LycHyRxsaWFn5GHTIe") // password2
                                 .build();
 
                 User user3 = User.builder()
                                 .username("charlie")
                                 .email("charlie@example.com")
-                                .password("password3")
+                                .password("$2a$12$vSCsEuwOE1lr7488PkFXIORw4iBvfpNcDL07.oA8pMY7mB0FHJaKi") // password3
                                 .build();
 
                 userRepo.save(user1);
