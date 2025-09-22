@@ -2,6 +2,9 @@ package com.orion.mdd.service;
 
 import java.util.Optional;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +13,9 @@ import com.orion.mdd.mapper.UserMapper;
 import com.orion.mdd.model.User;
 import com.orion.mdd.payload.request.LoginRequest;
 import com.orion.mdd.payload.request.RegisterRequest;
+import com.orion.mdd.payload.response.JwtResponse;
 import com.orion.mdd.repository.UserRepository;
+import com.orion.mdd.security.jwt.JwtUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,10 +26,22 @@ public class AuthService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtils jwtUtils;
 
-    public String authenticate(LoginRequest loginRequest) {
+    public JwtResponse authenticate(LoginRequest loginRequest) {
 
-        return "authenticated";
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+
+            String token = jwtUtils.generateJwtToken(authentication);
+
+            return new JwtResponse(token);
+        } catch (Exception e) {
+            throw new RuntimeException("Authentication failed: Invalid email or password");
+        }
+
     }
 
     public UserDTO register(RegisterRequest registerRequest) {
