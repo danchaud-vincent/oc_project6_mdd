@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orion.mdd.dto.UserDTO;
+import com.orion.mdd.payload.request.UserRequest;
 import com.orion.mdd.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,10 +31,11 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public String updateUserById(@PathVariable String userId, @RequestBody String entity) {
-        // TODO: process PUT request
+    public ResponseEntity<UserDTO> updateUserById(@PathVariable Integer userId, @RequestBody UserRequest userRequest) {
 
-        return entity;
+        UserDTO userUpdatedDTO = userService.updateUserById(userId, userRequest);
+
+        return new ResponseEntity<UserDTO>(userUpdatedDTO, HttpStatus.OK);
     }
 
 }
