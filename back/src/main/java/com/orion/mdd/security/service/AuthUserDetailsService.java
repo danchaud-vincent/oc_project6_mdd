@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.orion.mdd.exception.custom.ResourceNotFoundException;
 import com.orion.mdd.model.User;
 import com.orion.mdd.repository.UserRepository;
 import com.orion.mdd.security.model.CustomUserDetails;
@@ -21,7 +22,8 @@ public class AuthUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
 
         User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new RuntimeException(String.format("No user found for the email: %s", userEmail)));
+                .orElseThrow(
+                        () -> new ResourceNotFoundException(String.format("User with email %s not found", userEmail)));
 
         return new CustomUserDetails(user);
     }
