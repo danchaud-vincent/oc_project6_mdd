@@ -2,9 +2,12 @@ package com.orion.mdd.service;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import com.orion.mdd.dto.CommentDTO;
+import com.orion.mdd.exception.custom.ResourceNotFoundException;
 import com.orion.mdd.mapper.CommentMapper;
 import com.orion.mdd.model.Comment;
 import com.orion.mdd.model.Post;
@@ -36,13 +39,19 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentDTO addCommentToPost(Integer postId, CommentRequest commentRequest) {
+    public CommentDTO addCommentToPost(Integer postId, CommentRequest commentRequest, Authentication authentication) {
         // Get Post
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("Post Not found with ID: " + postId));
 
-        User user = userRepository.findById(commentRequest.getAuthorId())
-                .orElseThrow(() -> new RuntimeException("User not found with ID: " + commentRequest.getAuthorId()));
+        // Get User Principal
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+        String emailPrincipal = jwt.getClaim("sub");
+        System.out.println("EMAIL SUB: " + emailPrincipal);
+
+        User user = userRepository.findByEmail(emailPrincipal)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("User with email %s Not Found", emailPrincipal)));
 
         Comment comment = commentMapper.toEntity(commentRequest, user, post);
 
