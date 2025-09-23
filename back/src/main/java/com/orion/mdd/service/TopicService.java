@@ -1,7 +1,6 @@
 package com.orion.mdd.service;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -26,9 +25,17 @@ public class TopicService {
     private final UserRepository userRepository;
     private final TopicMapper topicMapper;
 
-    public Collection<TopicDTO> getTopics() {
+    public Collection<TopicDTO> getTopics(Authentication authentication) {
 
-        List<Topic> topics = topicRepository.findAll();
+        // get User principal
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+        String emailPrincipal = jwt.getClaim("sub");
+
+        User userPrincipal = userRepository.findByEmail(emailPrincipal)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("User with email %s Not Found", emailPrincipal)));
+
+        Collection<Topic> topics = userPrincipal.getTopics();
 
         return topicMapper.toDto(topics);
     }

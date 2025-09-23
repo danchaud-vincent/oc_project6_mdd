@@ -29,9 +29,9 @@ public class TopicController {
     private final TopicService topicService;
 
     @GetMapping()
-    public ResponseEntity<List<TopicDTO>> getTopics() {
+    public ResponseEntity<List<TopicDTO>> getTopics(Authentication authentication) {
 
-        Collection<TopicDTO> topicsDTO = topicService.getTopics();
+        Collection<TopicDTO> topicsDTO = topicService.getTopics(authentication);
 
         return new ResponseEntity<List<TopicDTO>>(new ArrayList<>(topicsDTO), HttpStatus.OK);
     }
