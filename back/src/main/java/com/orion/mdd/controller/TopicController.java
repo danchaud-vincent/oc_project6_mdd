@@ -9,6 +9,8 @@ import com.orion.mdd.service.TopicService;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -29,9 +31,9 @@ public class TopicController {
     @GetMapping()
     public ResponseEntity<List<TopicDTO>> getTopics() {
 
-        List<TopicDTO> topicsDTO = topicService.getTopics();
+        Collection<TopicDTO> topicsDTO = topicService.getTopics();
 
-        return new ResponseEntity<List<TopicDTO>>(topicsDTO, HttpStatus.OK);
+        return new ResponseEntity<List<TopicDTO>>(new ArrayList<>(topicsDTO), HttpStatus.OK);
     }
 
     @PostMapping()
@@ -45,9 +47,9 @@ public class TopicController {
     @PostMapping("/{topicId}/subscribe")
     public ResponseEntity<List<TopicDTO>> subscribe(@PathVariable Integer topicId, Authentication authentication) {
 
-        List<TopicDTO> topicsDTO = topicService.subscribeToTopic(topicId, authentication);
+        Collection<TopicDTO> topicsDTO = topicService.subscribeToTopic(topicId, authentication);
 
-        return new ResponseEntity<List<TopicDTO>>(topicsDTO, HttpStatus.OK);
+        return new ResponseEntity<List<TopicDTO>>(new ArrayList<>(topicsDTO), HttpStatus.OK);
     }
 
 }
