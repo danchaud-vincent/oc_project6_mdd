@@ -1,5 +1,6 @@
 package com.orion.mdd.mapper;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.mapstruct.Mapper;
@@ -17,7 +18,7 @@ public interface TopicMapper {
 
     TopicDTO toDto(Topic topic);
 
-    List<TopicDTO> toDto(List<Topic> topicList);
+    Collection<TopicDTO> toDto(Collection<Topic> topicList);
 
     List<Topic> toEntity(List<TopicDTO> topicDtoList);
 }
