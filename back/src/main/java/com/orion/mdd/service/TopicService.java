@@ -1,5 +1,6 @@
 package com.orion.mdd.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -25,7 +26,7 @@ public class TopicService {
     private final UserRepository userRepository;
     private final TopicMapper topicMapper;
 
-    public List<TopicDTO> getTopics() {
+    public Collection<TopicDTO> getTopics() {
 
         List<Topic> topics = topicRepository.findAll();
 
@@ -40,7 +41,7 @@ public class TopicService {
         return topicMapper.toDto(topicSaved);
     }
 
-    public List<TopicDTO> subscribeToTopic(Integer topicId, Authentication authentication) {
+    public Collection<TopicDTO> subscribeToTopic(Integer topicId, Authentication authentication) {
         // Get user principal
         Jwt jwt = (Jwt) authentication.getPrincipal();
         String emailPrincipal = jwt.getClaim("sub");
