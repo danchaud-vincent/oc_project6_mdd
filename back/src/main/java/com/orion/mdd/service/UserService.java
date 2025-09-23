@@ -45,4 +45,12 @@ public class UserService {
         return userMapper.tDto(userSaved);
     }
 
+    @Transactional
+    public void deleteUserById(Integer userId) {
+        User userToDelete = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("User with ID %s Not Found", userId)));
+
+        userRepository.delete(userToDelete);
+    }
+
 }
