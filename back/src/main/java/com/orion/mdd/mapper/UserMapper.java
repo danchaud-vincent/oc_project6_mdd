@@ -16,6 +16,7 @@ public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "topics", ignore = true)
+    @Mapping(target = "posts", ignore = true)
     User toEntity(RegisterRequest registerRequest);
 
     UserDTO tDto(User user);
@@ -24,5 +25,6 @@ public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "topics", ignore = true)
+    @Mapping(target = "posts", ignore = true)
     void updateFromRequest(UserRequest userRequest, @MappingTarget User existingUser);
 }
