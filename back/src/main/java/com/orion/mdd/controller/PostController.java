@@ -83,9 +83,9 @@ public class PostController {
 
     @PostMapping("/{postId}/comments")
     public ResponseEntity<CommentDTO> addCommentToPost(@PathVariable Integer postId,
-            @RequestBody CommentRequest commentRequest) {
+            @RequestBody CommentRequest commentRequest, Authentication authentication) {
 
-        CommentDTO commentDTO = commentService.addCommentToPost(postId, commentRequest);
+        CommentDTO commentDTO = commentService.addCommentToPost(postId, commentRequest, authentication);
 
         return new ResponseEntity<CommentDTO>(commentDTO, HttpStatus.CREATED);
     }
