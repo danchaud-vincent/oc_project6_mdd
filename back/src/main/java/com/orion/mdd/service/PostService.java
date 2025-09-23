@@ -3,6 +3,7 @@ package com.orion.mdd.service;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import com.orion.mdd.dto.PostDTO;
@@ -17,7 +18,6 @@ import com.orion.mdd.repository.CommentRepository;
 import com.orion.mdd.repository.PostRepository;
 import com.orion.mdd.repository.TopicRepository;
 import com.orion.mdd.repository.UserRepository;
-import com.orion.mdd.security.model.CustomUserDetails;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -49,8 +49,12 @@ public class PostService {
     @Transactional
     public PostDTO createPost(PostRequest postCreateRequest, Authentication authentication) {
         // Get the user principal
-        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        User userPrincipal = userDetails.getUser();
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+        String emailPrincipal = jwt.getClaim("sub");
+
+        User userPrincipal = userRepository.findByEmail(emailPrincipal)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("User with email %s Not Found", emailPrincipal)));
 
         // Find topic by id
         Topic topic = topicRepository.findById(postCreateRequest.getTopicId())
