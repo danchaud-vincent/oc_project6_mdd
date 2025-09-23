@@ -12,6 +12,5 @@ public class PostRequest {
     private String title;
     private String content;
     private Integer topicId;
-    private Integer authorId;
 
 }
