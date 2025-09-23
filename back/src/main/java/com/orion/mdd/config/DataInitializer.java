@@ -77,9 +77,9 @@ public class DataInitializer implements CommandLineRunner {
                 topicRepo.save(topic3);
 
                 // user subscriptions
-                user1.setTopics(List.of(topic1, topic2));
-                user2.setTopics(List.of(topic2, topic3));
-                user3.setTopics(List.of(topic1, topic3));
+                user1.getTopics().addAll(List.of(topic1, topic2));
+                user2.getTopics().addAll(List.of(topic2, topic3));
+                user3.getTopics().addAll(List.of(topic1, topic3));
 
                 userRepo.save(user1);
                 userRepo.save(user2);
