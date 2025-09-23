@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.orion.mdd.dto.PostDTO;
+import com.orion.mdd.exception.custom.ResourceNotFoundException;
 import com.orion.mdd.mapper.CommentMapper;
 import com.orion.mdd.mapper.PostMapper;
 import com.orion.mdd.model.Post;
@@ -38,7 +39,7 @@ public class PostService {
 
     public PostDTO getPostById(Integer postId) {
         Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new RuntimeException("Post not found with ID: " + postId));
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Post with ID %s not found ", postId)));
 
         return postMapper.toDto(post);
     }
@@ -47,13 +48,14 @@ public class PostService {
     public PostDTO createPost(PostRequest postCreateRequest) {
         // Find user by id
         User user = userRepository.findById(postCreateRequest.getAuthorId())
-                .orElseThrow(() -> new RuntimeException("User not found with ID: " +
-                        postCreateRequest.getAuthorId()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("User with ID %s not found ", postCreateRequest.getAuthorId())));
+        ;
 
         // Find topic by id
         Topic topic = topicRepository.findById(postCreateRequest.getTopicId())
-                .orElseThrow(() -> new RuntimeException("Topic not found by ID: " +
-                        postCreateRequest.getTopicId()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("Topic with ID %s not found ", postCreateRequest.getTopicId())));
 
         // save the post
         Post newPost = postMapper.toEntity(postCreateRequest, user, topic);
@@ -66,11 +68,12 @@ public class PostService {
     public PostDTO updatePostById(Integer postId, PostRequest postRequest) {
         // Get post by id
         Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new RuntimeException("Post not found with ID: " + postId));
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Post with ID %s not found ", postId)));
 
         // Get topic by id
         Topic topic = topicRepository.findById(postRequest.getTopicId())
-                .orElseThrow(() -> new RuntimeException("Topic not found with ID: " + postRequest.getTopicId()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("Topic with ID %s not found ", postRequest.getTopicId())));
 
         // update existing post
         postMapper.updateFromRequest(postRequest, post);
@@ -85,7 +88,7 @@ public class PostService {
     public void deletePostById(Integer postId) {
         // Get the post
         Post postToDelete = postRepository.findById(postId)
-                .orElseThrow(() -> new RuntimeException("Post not found with ID: " + postId));
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Post with ID %s not found ", postId)));
 
         postRepository.delete(postToDelete);
     }
