@@ -3,12 +3,14 @@ package com.orion.mdd.service;
 import java.util.Optional;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.orion.mdd.dto.UserDTO;
+import com.orion.mdd.exception.custom.UserAlreadyExistsException;
 import com.orion.mdd.mapper.UserMapper;
 import com.orion.mdd.model.User;
 import com.orion.mdd.payload.request.LoginRequest;
@@ -38,8 +40,8 @@ public class AuthService {
             String token = jwtUtils.generateJwtToken(authentication);
 
             return new JwtResponse(token);
-        } catch (Exception e) {
-            throw new RuntimeException("Authentication failed: Invalid email or password");
+        } catch (BadCredentialsException e) {
+            throw new BadCredentialsException("Authentication failed: Invalid email or password");
         }
 
     }
@@ -51,7 +53,7 @@ public class AuthService {
         Optional<User> existingUser = userRepository.findByEmail(email);
 
         if (existingUser.isPresent()) {
-            throw new RuntimeException(String.format("User with email %s already exists!", email));
+            throw new UserAlreadyExistsException(String.format("User with email %s already exists!", email));
         }
 
         // add the new user
