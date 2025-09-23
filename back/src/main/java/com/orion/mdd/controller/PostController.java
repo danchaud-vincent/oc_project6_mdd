@@ -14,6 +14,7 @@ import com.orion.mdd.dto.CommentDTO;
 import com.orion.mdd.dto.PostDTO;
 import com.orion.mdd.payload.request.CommentRequest;
 import com.orion.mdd.payload.request.PostRequest;
+import com.orion.mdd.payload.response.MessageResponse;
 import com.orion.mdd.service.CommentService;
 import com.orion.mdd.service.PostService;
 
@@ -63,11 +64,12 @@ public class PostController {
     }
 
     @DeleteMapping("/{postId}")
-    public ResponseEntity<String> deletePostById(@PathVariable Integer postId) {
+    public ResponseEntity<MessageResponse> deletePostById(@PathVariable Integer postId) {
 
         postService.deletePostById(postId);
 
-        return new ResponseEntity<String>(String.format("Post with ID %s is deleted!", postId), HttpStatus.OK);
+        return new ResponseEntity<MessageResponse>(
+                new MessageResponse(String.format("Post with ID %s is deleted!", postId)), HttpStatus.OK);
     }
 
     @GetMapping("/{postId}/comments")
@@ -88,12 +90,14 @@ public class PostController {
     }
 
     @DeleteMapping("/{postId}/comments/{commentId}")
-    public ResponseEntity<String> deletePostComment(@PathVariable Integer postId, @PathVariable Integer commentId) {
+    public ResponseEntity<MessageResponse> deletePostComment(@PathVariable Integer postId,
+            @PathVariable Integer commentId) {
 
         commentService.deletePostComment(postId, commentId);
 
-        return new ResponseEntity<String>(
-                String.format("Comment ID: %s is deleted from Post ID: %s", commentId, postId), HttpStatus.OK);
+        return new ResponseEntity<MessageResponse>(
+                new MessageResponse(String.format("Comment ID: %s is deleted from Post ID: %s", commentId, postId)),
+                HttpStatus.OK);
     }
 
 }
