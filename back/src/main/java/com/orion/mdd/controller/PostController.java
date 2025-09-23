@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,9 +49,9 @@ public class PostController {
     }
 
     @PostMapping()
-    public ResponseEntity<PostDTO> createPost(@RequestBody PostRequest postRequest) {
+    public ResponseEntity<PostDTO> createPost(@RequestBody PostRequest postRequest, Authentication authentication) {
 
-        PostDTO postDTO = postService.createPost(postRequest);
+        PostDTO postDTO = postService.createPost(postRequest, authentication);
 
         return new ResponseEntity<PostDTO>(postDTO, HttpStatus.CREATED);
     }

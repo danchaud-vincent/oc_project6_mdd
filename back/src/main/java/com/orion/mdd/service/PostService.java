@@ -2,6 +2,7 @@ package com.orion.mdd.service;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.orion.mdd.dto.PostDTO;
@@ -16,6 +17,7 @@ import com.orion.mdd.repository.CommentRepository;
 import com.orion.mdd.repository.PostRepository;
 import com.orion.mdd.repository.TopicRepository;
 import com.orion.mdd.repository.UserRepository;
+import com.orion.mdd.security.model.CustomUserDetails;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -45,12 +47,10 @@ public class PostService {
     }
 
     @Transactional
-    public PostDTO createPost(PostRequest postCreateRequest) {
-        // Find user by id
-        User user = userRepository.findById(postCreateRequest.getAuthorId())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        String.format("User with ID %s not found ", postCreateRequest.getAuthorId())));
-        ;
+    public PostDTO createPost(PostRequest postCreateRequest, Authentication authentication) {
+        // Get the user principal
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        User userPrincipal = userDetails.getUser();
 
         // Find topic by id
         Topic topic = topicRepository.findById(postCreateRequest.getTopicId())
@@ -58,7 +58,7 @@ public class PostService {
                         String.format("Topic with ID %s not found ", postCreateRequest.getTopicId())));
 
         // save the post
-        Post newPost = postMapper.toEntity(postCreateRequest, user, topic);
+        Post newPost = postMapper.toEntity(postCreateRequest, userPrincipal, topic);
         Post newPostSaved = postRepository.save(newPost);
 
         return postMapper.toDto(newPostSaved);
