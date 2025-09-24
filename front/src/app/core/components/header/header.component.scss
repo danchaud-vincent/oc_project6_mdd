@@ -1,19 +1,21 @@
-header {
+@use '@angular/material' as mat;
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75em;
-    border-bottom: thick double black;
+
+    @include mat.elevation(3);
 }
 
 .header-logo{
-    width: 150px;
+    height: 100%;
 }
 
 .header-nav ul{
     display: flex;
     align-items: center;
-    gap: 2em;
+    gap: 1.5em;
     list-style-type: none;
     padding: 0;
 }
@@ -36,6 +38,6 @@ header {
 i{
     border: 2px solid black;
     border-radius: 50%;
-    padding: 0.5em;
+    padding: 0.25em;
 }
 
