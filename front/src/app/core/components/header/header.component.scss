@@ -12,6 +12,7 @@ header {
 
 .header-nav ul{
     display: flex;
+    align-items: center;
     gap: 2em;
     list-style-type: none;
     padding: 0;
@@ -25,4 +26,16 @@ header {
 .nav-link:hover, .nav-link:focus, .nav-link:active{
     color: #7451EB;
     font-weight: 500;
+
+    i{
+        border-color: #7451EB;
+    }
 }
+
+// ICON
+i{
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 0.5em;
+}
+
