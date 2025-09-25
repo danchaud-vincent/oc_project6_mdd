@@ -3,7 +3,7 @@
 
 <mat-sidenav-container>
     <!-- sideNavBar -->
-    <mat-sidenav #snav mode="over" position="end" [fixedInViewport]="true" [fixedTopGap]="fixedTopGap$ | async">
+    <mat-sidenav #snav mode="over" [opened]="isMobile$ | async" position="end" [fixedInViewport]="true" [fixedTopGap]="fixedTopGap$ | async">
         <mat-nav-list>
             <mat-list-item class="logout">
                 <a class="nav-link" routerLink="/">
