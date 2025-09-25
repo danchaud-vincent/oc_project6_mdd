@@ -1,17 +1,46 @@
-<mat-toolbar class="header">
-    <img class="header-logo" src="assets/images/mdd.png" alt="MDD logo">
-    <nav class="header-nav">
-        <ul>
-            <li>
-                <a class="nav-link" routerLink="/">Articles</a>
-            </li>
-            <li>
-                <a class="nav-link" routerLink="/">Thèmes</a>
-            </li>
-            <li>
-                <a class="nav-link" routerLink="/"><i class="fa-solid fa-user"></i></a>
-            </li>
-        </ul>
-    </nav>
-</mat-toolbar>
+<header class="header-container">
+    <mat-toolbar class="header-toolbar">
+        <img class="header-logo" src="assets/images/mdd.png" alt="MDD logo">
+        <nav>
+            <ul>
+                <li>
+                    <a class="nav-link" routerLink="/">Articles</a>
+                </li>
+                <li>
+                    <a class="nav-link" routerLink="/">Thèmes</a>
+                </li>
+                <li>
+                    <a class="nav-link" routerLink="/"><mat-icon class="icon">person</mat-icon></a>
+                </li>
+            </ul>
+        </nav>
+
+        <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="header-sidenavbar">
+        <!-- Sidebar à droite -->
+        <mat-sidenav #snav mode="side" position="end" [fixedInViewport]="true" fixedTopGap="64">
+            <a class="nav-link profile center" routerLink="/">
+                <mat-icon class="icon">person</mat-icon>
+            </a>
+            <mat-nav-list>
+                <mat-list-item>
+                    <a class="nav-link" routerLink="/">Thèmes</a>
+                </mat-list-item>
+                <mat-list-item>
+                    <a class="nav-link" routerLink="/">profile</a>
+                </mat-list-item>
+            </mat-nav-list>
+            <a class="nav-link logout center" routerLink="/">
+                Se deconnecter
+            </a>
+        </mat-sidenav>
+    </mat-sidenav-container>
+</header>
+
+
+
 

@@ -1,41 +1,83 @@
 @use '@angular/material' as mat;
 
-.header {
+.header-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/** TOOLBAR NAV **/
+.header-toolbar {
+    position: fixed;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     @include mat.elevation(3);
+
+    .header-logo{
+        height: 100%;
+    }
+
+    nav ul{
+        display: flex;
+        align-items: center;
+        gap: 1.5em;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .nav-link:hover, .nav-link:focus, .nav-link:active{
+        color: #7451EB;
+    
+        .icon{
+            border-color: #7451EB;
+        }
+    }
 }
 
-.header-logo{
-    height: 100%;
+
+/** SIDE NAVBAR **/
+mat-sidenav{
+    padding: 1em 0;
+    
+    .center{
+        display: block;
+        text-align: center;
+    }
+
+    .logout{
+        color: red;
+    }
+
+    .logout:hover{
+        text-decoration: underline;
+    }
+
+    .profile:hover{
+        color: #7451EB;
+    
+        .icon{
+            border-color: #7451EB;
+        }
+    }
+
 }
 
-.header-nav ul{
-    display: flex;
-    align-items: center;
-    gap: 1.5em;
-    list-style-type: none;
-    padding: 0;
-}
 
+/** LINKS **/
 .nav-link{
     text-decoration: none;
     color: black;
 }
 
-.nav-link:hover, .nav-link:focus, .nav-link:active{
-    color: #7451EB;
-    font-weight: 500;
-
-    i{
-        border-color: #7451EB;
-    }
-}
-
-// ICON
-i{
+/** ICON **/
+.icon{
     border: 2px solid black;
     border-radius: 50%;
     padding: 0.25em;
