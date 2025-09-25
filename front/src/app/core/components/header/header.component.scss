@@ -1,14 +1,5 @@
 @use '@angular/material' as mat;
 
-.header-container{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
 
 /** TOOLBAR NAV **/
 .header-toolbar {
@@ -39,34 +30,6 @@
             border-color: #7451EB;
         }
     }
-}
-
-
-/** SIDE NAVBAR **/
-mat-sidenav{
-    padding: 1em 0;
-    
-    .center{
-        display: block;
-        text-align: center;
-    }
-
-    .logout{
-        color: red;
-    }
-
-    .logout:hover{
-        text-decoration: underline;
-    }
-
-    .profile:hover{
-        color: #7451EB;
-    
-        .icon{
-            border-color: #7451EB;
-        }
-    }
-
 }
 
 
