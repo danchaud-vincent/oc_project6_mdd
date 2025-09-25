@@ -5,17 +5,17 @@ mat-sidenav-container {
 
 mat-sidenav{
     padding: 1em 0;
+    text-align: right;
 
     /* Profile */
     mat-list-item.profile{
         display: flex;
-        align-items: center;
-        justify-content: center;
+        position: absolute;
+        bottom: 5px;
 
         a{
-            display: flex;           
-            justify-content: center;
-            align-items: center;
+            display: flex;
+            justify-content: end;   
         }
 
         &:hover{
@@ -31,8 +31,7 @@ mat-sidenav{
 
     /* log out */
     mat-list-item.logout{
-        text-align: center;
-
+        
         a {
             color: red;
         }
@@ -50,9 +49,15 @@ mat-sidenav{
     text-decoration: none;
 }
 
-/** ICON **/
+
 .icon{
     border: 2px solid black;
+    background-color: lightgray;
     border-radius: 50%;
     padding: 0.25em;
+}
+
+/** Typographie **/
+.article, .theme{
+    font-size: x-large;
 }
