@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LayoutWithHeadersComponent } from './core/components/layout-with-headers/layout-with-headers.component';
+import { LayoutWithHeadersComponent } from './core/components/layouts/layout-with-headers/layout-with-headers.component';
 
 export const routes: Routes = [
   {
