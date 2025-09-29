@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.orion.mdd.dto.UserDTO;
+import com.orion.mdd.exception.custom.ResourceNotFoundException;
 import com.orion.mdd.exception.custom.UserAlreadyExistsException;
 import com.orion.mdd.mapper.UserMapper;
 import com.orion.mdd.model.User;
@@ -39,7 +40,17 @@ public class AuthService {
 
             String token = jwtUtils.generateJwtToken(authentication);
 
-            return new JwtResponse(token);
+            // Get user info
+            User userPrincipal = userRepository.findByEmail(loginRequest.getEmail())
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            String.format("User with email %s Not Found", loginRequest.getEmail())));
+
+            return JwtResponse.builder()
+                    .id(userPrincipal.getId())
+                    .username(userPrincipal.getUsername())
+                    .email(userPrincipal.getEmail())
+                    .token(token)
+                    .build();
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException("Authentication failed: Invalid email or password");
         }
