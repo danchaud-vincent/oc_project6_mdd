@@ -19,7 +19,7 @@
 .back-container {
   order: 1;
   align-self: flex-start;
-  margin: 3em 0 1em 3em;
+  margin: 1em 0 0 1em;
 }
 
 /* header */
@@ -34,13 +34,14 @@
 /* main content */
 .main-content {
   order: 3;
+  margin-bottom: 1em;
   width: 80%;
   max-width: 500px;
 }
 
 /* logo */
 .header-logo {
-  max-width: 80%;
+  max-width: 70%;
 }
 
 /* ===============================
