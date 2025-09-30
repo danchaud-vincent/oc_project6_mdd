@@ -1,19 +1,51 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.dev/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 html {
-  @include mat.theme((
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
-}/* You can add global styles to this file, and also import other style files */
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+} /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* ===============================
+   VARIABLES
+=============================== */
+:root {
+  /* COLORS */
+  --main-color: #7451eb;
+
+  /* FONT SIZES */
+  --fs-xs: 0.75rem; /*12px*/
+  --fs-s: 1rem; /*16px*/
+  --fs-m: 1.5rem; /*24px*/
+  --fs-l: 2.75rem; /*44px*/
+  --fs-title-small: 2rem; /*32px*/
+  --fs-title: 2.5rem; /*40px*/
+}
