@@ -1,31 +1,3 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
-}
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
 
-/* ===============================
-   VARIABLES
-=============================== */
-:root {
-  /* COLORS */
-  --main-color: #7451eb;
 
-  /* FONT SIZES */
-  --fs-xs: 0.75rem; /*12px*/
-  --fs-s: 1rem; /*16px*/
-  --fs-m: 1.5rem; /*24px*/
-  --fs-l: 2.75rem; /*44px*/
-  --fs-title-small: 2rem; /*32px*/
-  --fs-title: 2.5rem; /*40px*/
-}
