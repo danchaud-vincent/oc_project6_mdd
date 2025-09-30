@@ -1,0 +1,14 @@
+/* FORM */
+.form-row {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: 500;
+    margin-bottom: 0.5em;
+  }
+}
+
+h1 {
+  text-align: center;
+}
