@@ -1,27 +1,34 @@
 <h1>S'inscrire</h1>
-<form action="">
+<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
   <div class="form-row">
     <label>Nom d'utilisateur</label>
     <mat-form-field>
       <mat-label>vincent danchaud</mat-label>
-      <input matInput type="text" />
+      <input matInput type="text" formControlName="username" />
+      <mat-error>Ce champs est requis</mat-error>
     </mat-form-field>
   </div>
   <div class="form-row">
     <label>Adresse email</label>
     <mat-form-field>
       <mat-label>example&#64;email.com</mat-label>
-      <input matInput type="email" />
+      <input matInput type="email" formControlName="email" />
+      <mat-error>{{
+        getFormControlErrorText(registerForm.controls["email"])
+      }}</mat-error>
     </mat-form-field>
   </div>
   <div class="form-row">
     <label>Mot de passe</label>
     <mat-form-field>
       <mat-label>Exemple123!</mat-label>
-      <input matInput type="password" />
+      <input matInput type="password" formControlName="password" />
+      <mat-error>{{
+        getFormControlErrorText(registerForm.controls["password"])
+      }}</mat-error>
     </mat-form-field>
   </div>
   <div class="btns-actions">
-    <button type="submit">S'inscrire</button>
+    <button type="submit" [disabled]="registerForm.invalid">S'inscrire</button>
   </div>
 </form>
