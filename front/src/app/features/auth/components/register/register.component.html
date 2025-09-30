@@ -31,4 +31,8 @@
   <div class="btns-actions">
     <button type="submit" [disabled]="registerForm.invalid">S'inscrire</button>
   </div>
+
+  @if (errorMessage) {
+  <div class="error-message">{{ errorMessage }}</div>
+  }
 </form>

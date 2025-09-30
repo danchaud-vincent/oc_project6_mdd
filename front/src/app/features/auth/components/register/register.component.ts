@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { passwordValidator } from '../../validators/password.validator';
+import { RegisterRequest } from '../../models/registerRequest.model';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +22,7 @@ import { passwordValidator } from '../../validators/password.validator';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
+  errorMessage!: string;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -41,6 +43,17 @@ export class RegisterComponent implements OnInit {
 
   onRegister() {
     console.log(this.registerForm.value);
+    const registerRequest: RegisterRequest = this.registerForm.value;
+
+    this.authService.register(registerRequest).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        this.errorMessage = err.error.message;
+        this.registerForm.reset();
+      },
+    });
   }
 
   getFormControlErrorText(ctrl: AbstractControl): string {
