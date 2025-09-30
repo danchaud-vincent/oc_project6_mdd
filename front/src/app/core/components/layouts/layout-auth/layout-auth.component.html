@@ -1,17 +1,15 @@
 <div class="auth-container">
-    <div class="item header-auth">
-        <img class="header-logo" src="assets/images/mdd.png" alt="MDD logo">
-    </div>
+  <div class="item header-auth">
+    <img class="header-logo" src="assets/images/mdd.png" alt="MDD logo" />
+  </div>
 
-    <div class="item back-container">
-        <button mat-icon-button class="btn-back">
-            <mat-icon class="icon-back">arrow_back</mat-icon>
-        </button>
-    </div>
+  <div class="item back-container">
+    <button mat-icon-button class="btn-back" (click)="back()">
+      <mat-icon class="icon-back">arrow_back</mat-icon>
+    </button>
+  </div>
 
-    <div class="item main-content">
-        <p>content</p>
-        <router-outlet></router-outlet>
-    </div>  
+  <div class="item main-content">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-
