@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  getFormControlErrorText(ctrl: AbstractControl): String {
+  getFormControlErrorText(ctrl: AbstractControl): string {
     if (ctrl.hasError('required')) {
       return 'Ce champs est requis';
     } else if (ctrl.hasError('email')) {
