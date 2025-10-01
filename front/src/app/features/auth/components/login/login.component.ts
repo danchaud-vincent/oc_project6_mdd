@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginRequest } from '../../models/loginRequest.model';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { UserSessionService } from '../../../../core/services/user-session.service';
+import { UserSessionInfo } from '../../../../core/models/userSessionInfo.model';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private userSessionService: UserSessionService,
     private router: Router
   ) {}
 
@@ -39,9 +42,10 @@ export class LoginComponent implements OnInit {
     const loginRequest: LoginRequest = this.loginForm.value;
 
     this.authService.login(loginRequest).subscribe({
-      next: (value) => {
+      next: (value: UserSessionInfo) => {
+        this.userSessionService.login(value);
         this.errorMessage = '';
-        this.router.navigate(['/']);
+        this.router.navigate(['/posts']);
       },
       error: (err) => {
         this.errorMessage =
