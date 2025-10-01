@@ -1,29 +1,36 @@
 <!-- Header toolbar -->
 <app-header [matSidenav]="snav" [isMobile$]="isMobile$"></app-header>
 
-<mat-sidenav-container>
-    <!-- sideNavBar -->
-    <mat-sidenav #snav mode="over" [opened]="isMobile$ | async" position="end" [fixedInViewport]="true" [fixedTopGap]="fixedTopGap$ | async">
-        <mat-nav-list>
-            <mat-list-item class="logout">
-                <a class="nav-link" routerLink="/">
-                    Se déconnecter
-                </a>
-            </mat-list-item>
-            <mat-list-item>
-                <a class="nav-link article" routerLink="/">Articles</a>
-            </mat-list-item>
-            <mat-list-item>
-                <a class="nav-link theme" routerLink="/">Thèmes</a>
-            </mat-list-item>
-            <mat-list-item class="profile">
-                <a class="nav-link" routerLink="/"><mat-icon class="icon">person</mat-icon></a>
-            </mat-list-item>
-        </mat-nav-list>
-    </mat-sidenav>
+<mat-sidenav-container [style.marginTop.px]="fixedTopGap$ | async">
+  <!-- sideNavBar -->
+  <mat-sidenav
+    #snav
+    mode="over"
+    [opened]="isMobile$ | async"
+    position="end"
+    [fixedInViewport]="true"
+    [fixedTopGap]="fixedTopGap$ | async"
+  >
+    <mat-nav-list>
+      <mat-list-item class="logout">
+        <a class="nav-link" routerLink="/"> Se déconnecter </a>
+      </mat-list-item>
+      <mat-list-item>
+        <a class="nav-link article" routerLink="/">Articles</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a class="nav-link theme" routerLink="/">Thèmes</a>
+      </mat-list-item>
+      <mat-list-item class="profile">
+        <a class="nav-link" routerLink="/"
+          ><mat-icon class="icon">person</mat-icon></a
+        >
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
 
-    <!-- Main Content -->
-    <mat-sidenav-content>
-        
-    </mat-sidenav-content>
+  <!-- Main Content -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>

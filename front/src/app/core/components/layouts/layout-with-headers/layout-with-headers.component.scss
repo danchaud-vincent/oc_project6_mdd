@@ -1,3 +1,6 @@
+/* ===============================
+   MAT SIDENAV
+=============================== */
 mat-sidenav-container {
   height: 100%;
   width: 100%;
@@ -6,6 +9,7 @@ mat-sidenav-container {
 mat-sidenav {
   padding: 1em 0;
   text-align: right;
+  width: 70%;
 
   /* Profile */
   mat-list-item.profile {
@@ -41,11 +45,16 @@ mat-sidenav {
   }
 }
 
+/* ===============================
+   GLOBAL
+=============================== */
+
 /** LINKS **/
 .nav-link {
   text-decoration: none;
 }
 
+/** ICON **/
 .icon {
   border: 2px solid black;
   border-radius: 50%;
@@ -60,5 +69,5 @@ mat-sidenav {
 /** Typographie **/
 .article,
 .theme {
-  font-size: x-large;
+  font-size: var(--fs-m);
 }

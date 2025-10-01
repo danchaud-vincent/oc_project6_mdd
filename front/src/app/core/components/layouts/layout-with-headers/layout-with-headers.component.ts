@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -15,6 +16,7 @@ import { AsyncPipe } from '@angular/common';
     MatListModule,
     MatIconModule,
     AsyncPipe,
+    RouterOutlet,
   ],
   templateUrl: './layout-with-headers.component.html',
   styleUrl: './layout-with-headers.component.scss',
@@ -27,11 +29,11 @@ export class LayoutWithHeadersComponent implements OnInit {
 
   ngOnInit(): void {
     this.isMobile$ = this.breakPointObserver
-      .observe([Breakpoints.XSmall, Breakpoints.Small])
+      .observe([Breakpoints.XSmall])
       .pipe(map((result) => result.matches));
 
     this.fixedTopGap$ = this.isMobile$.pipe(
-      map((isMobile) => (isMobile ? 56 : 64))
+      map((isMobile) => (isMobile ? 56 : 0))
     );
   }
 }
