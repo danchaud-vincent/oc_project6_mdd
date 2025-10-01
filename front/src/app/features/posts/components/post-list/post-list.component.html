@@ -1,1 +1,4 @@
-<p>post-list works!</p>
+<h1>test</h1>
+@for (post of posts$ | async; track post.id) {
+<p>posts</p>
+}
