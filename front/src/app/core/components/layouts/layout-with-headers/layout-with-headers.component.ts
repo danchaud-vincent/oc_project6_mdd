@@ -33,7 +33,7 @@ export class LayoutWithHeadersComponent implements OnInit {
       .pipe(map((result) => result.matches));
 
     this.fixedTopGap$ = this.isMobile$.pipe(
-      map((isMobile) => (isMobile ? 56 : 0))
+      map((isMobile) => (isMobile ? 56 : 64))
     );
   }
 }
