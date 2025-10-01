@@ -1,49 +1,52 @@
-@use '@angular/material' as mat;
-
+@use "@angular/material" as mat;
 
 /** TOOLBAR NAV **/
 .header-toolbar {
-    position: fixed;
-    z-index: 2;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include mat.elevation(3);
+
+  .header-logo {
+    height: 100%;
+  }
+
+  nav ul {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 1.5em;
+    list-style-type: none;
+    padding: 0;
+  }
 
-    @include mat.elevation(3);
+  .nav-link:hover,
+  .nav-link:focus,
+  .nav-link:active {
+    color: var(--main-color);
 
-    .header-logo{
-        height: 100%;
+    .icon {
+      border-color: var(--main-color);
     }
-
-    nav ul{
-        display: flex;
-        align-items: center;
-        gap: 1.5em;
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .nav-link:hover, .nav-link:focus, .nav-link:active{
-        color: #7451EB;
-    
-        .icon{
-            border-color: #7451EB;
-        }
-    }
+  }
 }
 
-
 /** LINKS **/
-.nav-link{
-    text-decoration: none;
-    color: black;
+.nav-link {
+  text-decoration: none;
+  color: black;
 }
 
 /** ICON **/
-.icon{
-    border: 2px solid black;
-    background-color: lightgray;
-    border-radius: 50%;
-    padding: 0.25em;
-}
+.icon {
+  border: 2px solid black;
+  border-radius: 50%;
+  padding: 0.75em; // 18px
+  background-color: lightgray;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
