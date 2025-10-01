@@ -6,12 +6,12 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthService } from '../../features/auth/services/auth.service';
 import { Observable } from 'rxjs';
+import { UserSessionService } from '../services/user-session.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private auth: AuthService) {}
+  constructor(private userSessionService: UserSessionService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const headers = new HttpHeaders().append(
       'Authorization',
-      `Bearer ${'test'}`
+      `Bearer ${this.userSessionService.getToken()}`
     );
 
     const modifiedReq = req.clone({ headers: headers });
