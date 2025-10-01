@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginRequest } from '../models/loginRequest.model';
 import { RegisterRequest } from '../models/registerRequest.model';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,14 +13,14 @@ export class AuthService {
 
   login(loginRequest: LoginRequest): Observable<string> {
     return this.http.post<string>(
-      'http://localhost:3001/api/auth/login',
+      `${environment.baseUrl}/auth/login`,
       loginRequest
     );
   }
 
   register(registerRequest: RegisterRequest): Observable<string> {
     return this.http.post<string>(
-      'http://localhost:3001/api/auth/register',
+      `${environment.baseUrl}/auth/register`,
       registerRequest
     );
   }
