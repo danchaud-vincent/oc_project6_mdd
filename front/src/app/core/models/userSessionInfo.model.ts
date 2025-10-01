@@ -1,4 +1,4 @@
-export interface userSessionInfo {
+export interface UserSessionInfo {
   id: number;
   username: string;
   email: string;
