@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/topics")
+@RequestMapping("/api/topics")
 public class TopicController {
 
     private final TopicService topicService;
