@@ -15,9 +15,9 @@ export function authInterceptor(
   const userSessionService = inject(UserSessionService);
   const token = userSessionService.getToken();
 
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`,
-  });
+  if (req.url.includes('/auth/login') || req.url.includes('/auth/register')) {
+    return next(req);
+  }
 
   const modifiedReq = req.clone({
     setHeaders: token ? { Authorization: `Bearer ${token}` } : {},
