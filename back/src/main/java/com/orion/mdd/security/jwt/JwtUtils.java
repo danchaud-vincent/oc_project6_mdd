@@ -5,8 +5,6 @@ import java.time.Instant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwsHeader;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -16,6 +14,8 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.stereotype.Component;
+
+import com.orion.mdd.model.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,9 +34,7 @@ public class JwtUtils {
     private final JwtEncoder jwtEncoder;
     private final JwtDecoder jwtDecoder;
 
-    public String generateJwtToken(Authentication authentication) {
-        // user
-        UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
+    public String generateJwtToken(User user) {
 
         // time
         Instant now = Instant.now();
@@ -47,7 +45,7 @@ public class JwtUtils {
                 .issuer("mdd-api")
                 .issuedAt(now)
                 .expiresAt(expiry)
-                .subject(userPrincipal.getUsername())
+                .subject(user.getEmail())
                 .build();
 
         // Params
