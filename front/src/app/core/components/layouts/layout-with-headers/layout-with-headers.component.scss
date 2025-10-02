@@ -1,7 +1,8 @@
 /* ===============================
    MAT SIDENAV
 =============================== */
-mat-sidenav-container {
+mat-sidenav-container,
+mat-sidenav-content {
   width: 100%;
   min-height: calc(100vh - 56px);
 }
@@ -42,15 +43,6 @@ mat-sidenav {
       text-decoration: underline;
       color: red;
     }
-  }
-}
-
-/* ===============================
-   DESKTOP (min-width: 600px)
-=============================== */
-@media (min-width: 600px) {
-  mat-sidenav-container {
-    min-height: calc(100vh - 64px);
   }
 }
 
