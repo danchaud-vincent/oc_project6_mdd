@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.orion.mdd.dto.UserDTO;
-import com.orion.mdd.exception.custom.ResourceNotFoundException;
 import com.orion.mdd.exception.custom.UserAlreadyExistsException;
 import com.orion.mdd.mapper.UserMapper;
 import com.orion.mdd.model.User;
@@ -19,6 +18,7 @@ import com.orion.mdd.payload.request.RegisterRequest;
 import com.orion.mdd.payload.response.JwtResponse;
 import com.orion.mdd.repository.UserRepository;
 import com.orion.mdd.security.jwt.JwtUtils;
+import com.orion.mdd.security.model.CustomUserDetails;
 
 import lombok.RequiredArgsConstructor;
 
@@ -38,17 +38,16 @@ public class AuthService {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
-            String token = jwtUtils.generateJwtToken(authentication);
+            // user
+            CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
+            User user = userPrincipal.getUser();
 
-            // Get user info
-            User userPrincipal = userRepository.findByEmail(loginRequest.getEmail())
-                    .orElseThrow(() -> new ResourceNotFoundException(
-                            String.format("User with email %s Not Found", loginRequest.getEmail())));
+            String token = jwtUtils.generateJwtToken(user);
 
             return JwtResponse.builder()
-                    .id(userPrincipal.getId())
-                    .username(userPrincipal.getUsername())
-                    .email(userPrincipal.getEmail())
+                    .id(userPrincipal.getUser().getId())
+                    .username(userPrincipal.getUser().getUsername())
+                    .email(userPrincipal.getUser().getEmail())
                     .token(token)
                     .build();
         } catch (BadCredentialsException e) {
