@@ -88,7 +88,7 @@ public class DataInitializer implements CommandLineRunner {
                 // ADD POSTS
                 Post post1 = Post.builder()
                                 .title("Getting started with Spring Boot")
-                                .content("Spring Boot is amazing for REST APIs...")
+                                .content("Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...")
                                 .createdAt(LocalDateTime.now())
                                 .author(user1)
                                 .topic(topic1)
@@ -96,7 +96,7 @@ public class DataInitializer implements CommandLineRunner {
 
                 Post post2 = Post.builder()
                                 .title("Java Streams")
-                                .content("Let’s talk about Java Streams API...")
+                                .content("Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...")
                                 .createdAt(LocalDateTime.now())
                                 .author(user2)
                                 .topic(topic2)
@@ -104,7 +104,7 @@ public class DataInitializer implements CommandLineRunner {
 
                 Post post3 = Post.builder()
                                 .title("Choosing the right database")
-                                .content("QL vs NoSQL, which one to use?")
+                                .content("Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...")
                                 .createdAt(LocalDateTime.now())
                                 .author(user3)
                                 .topic(topic3)
