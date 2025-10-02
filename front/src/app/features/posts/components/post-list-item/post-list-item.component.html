@@ -1,12 +1,17 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>{{ post.title }}</mat-card-title>
-    <mat-card-subtitle>
-      <p>Date: {{ post.createdAt }}</p>
-      <p>Auteur: {{ post.author }}</p>
-    </mat-card-subtitle>
+    <div class="subtitles-wrapper">
+      <mat-card-subtitle>
+        <span>Date: {{ post.createdAt | date : "dd/MM/YYYY" }}</span>
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        <span>Auteur: {{ post.authorName }}</span>
+      </mat-card-subtitle>
+    </div>
   </mat-card-header>
   <mat-card-content>
+    <p>Content :</p>
     <p>
       {{ post.content }}
     </p>
