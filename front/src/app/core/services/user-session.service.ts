@@ -11,7 +11,14 @@ export class UserSessionService {
   private isLogged = false;
   private isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);
 
-  constructor(private tokenService: TokenService) {}
+  constructor(private tokenService: TokenService) {
+    const token = tokenService.getToken();
+
+    if (token) {
+      this.isLogged = true;
+      this.isLoggedSubject.next(this.isLogged);
+    }
+  }
 
   public isLogged$(): Observable<boolean> {
     return this.isLoggedSubject.asObservable();
