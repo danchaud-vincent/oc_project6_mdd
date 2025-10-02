@@ -2,11 +2,13 @@ package com.orion.mdd.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orion.mdd.dto.UserDTO;
 import com.orion.mdd.payload.request.UserRequest;
+import com.orion.mdd.payload.response.JwtResponse;
 import com.orion.mdd.payload.response.MessageResponse;
 import com.orion.mdd.service.UserService;
 
@@ -14,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -25,29 +26,30 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable Integer userId) {
+    @GetMapping("/me")
+    public ResponseEntity<UserDTO> getMeUser(Authentication authentication) {
 
-        UserDTO userDTO = userService.getUserById(userId);
+        UserDTO userDTO = userService.getMeUser(authentication);
 
         return new ResponseEntity<UserDTO>(userDTO, HttpStatus.OK);
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDTO> updateUserById(@PathVariable Integer userId, @RequestBody UserRequest userRequest) {
+    public ResponseEntity<JwtResponse> updateMeUser(Authentication authentication,
+            @RequestBody UserRequest userRequest) {
 
-        UserDTO userUpdatedDTO = userService.updateUserById(userId, userRequest);
+        JwtResponse jwtResponse = userService.updateMeUser(authentication, userRequest);
 
-        return new ResponseEntity<UserDTO>(userUpdatedDTO, HttpStatus.OK);
+        return new ResponseEntity<JwtResponse>(jwtResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<MessageResponse> deleteUserById(@PathVariable Integer userId) {
+    public ResponseEntity<MessageResponse> deleteMeUser(Authentication authentication) {
 
-        userService.deleteUserById(userId);
+        String emailUser = userService.deleteMeUser(authentication);
 
         return new ResponseEntity<MessageResponse>(
-                new MessageResponse(String.format("User with ID %s deleted!", userId)), HttpStatus.OK);
+                new MessageResponse(String.format("User with email %s deleted!", emailUser)), HttpStatus.OK);
     }
 
 }
