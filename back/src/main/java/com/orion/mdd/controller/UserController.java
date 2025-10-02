@@ -34,7 +34,7 @@ public class UserController {
         return new ResponseEntity<UserDTO>(userDTO, HttpStatus.OK);
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/me")
     public ResponseEntity<JwtResponse> updateMeUser(Authentication authentication,
             @RequestBody UserRequest userRequest) {
 
@@ -43,7 +43,7 @@ public class UserController {
         return new ResponseEntity<JwtResponse>(jwtResponse, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/me")
     public ResponseEntity<MessageResponse> deleteMeUser(Authentication authentication) {
 
         String emailUser = userService.deleteMeUser(authentication);
