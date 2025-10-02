@@ -4,6 +4,6 @@ export interface Post {
   content: string;
   createdAt: Date;
   updatedAt: Date;
-  topic: string;
-  author: string;
+  topicName: string;
+  authorName: string;
 }
