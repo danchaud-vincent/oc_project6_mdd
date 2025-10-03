@@ -18,7 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './add-post.component.scss',
 })
 export class AddPostComponent {
-  onCreatePost() {
-    throw new Error('Method not implemented.');
+  onSubmitForm() {
+    console.log('Hello create');
   }
 }
