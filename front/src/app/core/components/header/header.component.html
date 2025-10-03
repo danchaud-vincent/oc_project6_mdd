@@ -18,7 +18,13 @@
         >
       </li>
       <li>
-        <a class="nav-link" routerLink="/">Thèmes</a>
+        <a
+          class="nav-link"
+          routerLink="/topics"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Thèmes</a
+        >
       </li>
       <li>
         <a class="nav-link" routerLink="/"
