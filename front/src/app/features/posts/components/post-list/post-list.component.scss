@@ -8,7 +8,7 @@
 .btns-actions {
   display: flex;
   margin: 1em 0;
-  justify-content: space-between;
+  gap: 1em;
 }
 
 .posts-container {
@@ -56,5 +56,6 @@
   .btns-actions {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
   }
 }
