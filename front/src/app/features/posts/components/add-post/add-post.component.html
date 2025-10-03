@@ -2,17 +2,17 @@
   <app-button-backward></app-button-backward>
   <form [formGroup]="addPostForm" (ngSubmit)="onSubmitForm()">
     <h2>Créer un nouvel article</h2>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Sélectionner un thème</mat-label>
       <mat-select formControlName="topic">
         <mat-option value="Option">Option</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Titre de l'article</mat-label>
       <input matInput type="text" formControlName="title" />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Contenu de l'article</mat-label>
       <textarea rows="8" matInput formControlName="content"></textarea>
     </mat-form-field>

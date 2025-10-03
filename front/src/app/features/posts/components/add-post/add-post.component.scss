@@ -1,3 +1,5 @@
+@use "@angular/material" as mat;
+
 .add-post-container {
   display: flex;
   flex-direction: column;
@@ -15,6 +17,13 @@ form {
   h2 {
     margin-bottom: 2em;
   }
+
+  @include mat.form-field-overrides(
+    (
+      outline-color: var(--main-color),
+      outline-width: 2px,
+    )
+  );
 }
 
 /* ===============================
