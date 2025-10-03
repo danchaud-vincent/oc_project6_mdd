@@ -11,4 +11,8 @@ import { DatePipe } from '@angular/common';
 })
 export class PostListItemComponent {
   @Input() post!: Post;
+
+  viewSinglePost(): void {
+    console.log('View a single post', this.post);
+  }
 }
