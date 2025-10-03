@@ -1,16 +1,11 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
+import { ButtonBackwardComponent } from '../../../../shared/components/button-backward/button-backward.component';
 
 @Component({
   selector: 'app-layout-auth',
-  imports: [MatButtonModule, MatIconModule, RouterOutlet],
+  imports: [RouterOutlet, ButtonBackwardComponent],
   templateUrl: './layout-auth.component.html',
   styleUrl: './layout-auth.component.scss',
 })
-export class LayoutAuthComponent {
-  back() {
-    window.history.back();
-  }
-}
+export class LayoutAuthComponent {}
