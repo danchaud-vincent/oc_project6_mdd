@@ -1,14 +1,25 @@
-<article>
-  <h2>Titre de l'article</h2>
-  <div class="article-meta">
-    <p>Date: <time datetime=""></time></p>
-    <p>Auteur</p>
-    <p>Thème</p>
-  </div>
-  <section class="article-content">
-    <p>Content</p>
-  </section>
-  <section class="article-comments">
-    <p>Commentaires</p>
-  </section>
-</article>
+<div class="single-post-container">
+  <app-button-backward></app-button-backward>
+  @if (post$ | async; as post) {
+  <article>
+    <h2>{{ post.title }}</h2>
+    <div class="article-meta">
+      <p>
+        Date:
+        <time datetime="">{{ post.createdAt | date : "dd/MM/YYYY" }}</time>
+      </p>
+      <p>Auteur: {{ post.authorName }}</p>
+      <p>Thème: {{ post.topicName }}</p>
+    </div>
+    <section class="article-content">
+      <p>
+        <span>Content:</span>
+        {{ post.content }}
+      </p>
+    </section>
+    <section class="article-comments">
+      <p>Commentaires</p>
+    </section>
+  </article>
+  }
+</div>
