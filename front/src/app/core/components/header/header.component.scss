@@ -40,6 +40,10 @@
   color: black;
 }
 
+.active {
+  color: var(--main-color);
+}
+
 /** ICON **/
 .icon {
   border: 2px solid black;

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,12 +11,14 @@ import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-header',
   imports: [
+    RouterModule,
     RouterLink,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatListModule,
     AsyncPipe,
+    RouterLinkActive,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

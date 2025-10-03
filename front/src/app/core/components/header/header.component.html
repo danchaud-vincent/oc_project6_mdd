@@ -1,29 +1,31 @@
 <mat-toolbar class="header-toolbar">
-    <img class="header-logo" src="assets/images/mdd.png" alt="MDD logo">
-    
-    @if (isMobile$ | async) {
-        <button mat-icon-button (click)="matSidenav.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
-    }
-    @else {
-        <nav>
-            <ul>
-                <li>
-                    <a class="nav-link" routerLink="/">Articles</a>
-                </li>
-                <li>
-                    <a class="nav-link" routerLink="/">Thèmes</a>
-                </li>
-                <li>
-                    <a class="nav-link" routerLink="/"><mat-icon class="icon">person</mat-icon></a>
-                </li>
-            </ul>
-        </nav>
-    }
+  <img class="header-logo" src="assets/images/mdd.png" alt="MDD logo" />
+
+  @if (isMobile$ | async) {
+  <button mat-icon-button (click)="matSidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  } @else {
+  <nav>
+    <ul>
+      <li>
+        <a
+          class="nav-link"
+          routerLink="/posts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Articles</a
+        >
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/">Thèmes</a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/"
+          ><mat-icon class="icon">person</mat-icon></a
+        >
+      </li>
+    </ul>
+  </nav>
+  }
 </mat-toolbar>
-
-
-
-
-
