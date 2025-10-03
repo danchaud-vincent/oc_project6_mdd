@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       next: (value: UserSessionInfo) => {
         this.userSessionService.login(value);
         this.errorMessage = '';
-        this.router.navigate(['/posts']);
+        this.router.navigateByUrl('/posts');
       },
       error: (err) => {
         this.errorMessage =
