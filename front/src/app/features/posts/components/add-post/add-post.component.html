@@ -1,20 +1,20 @@
 <div class="add-post-container">
   <app-button-backward></app-button-backward>
-  <form (ngSubmit)="onSubmitForm()">
+  <form [formGroup]="addPostForm" (ngSubmit)="onSubmitForm()">
     <h2>Créer un nouvel article</h2>
     <mat-form-field>
       <mat-label>Sélectionner un thème</mat-label>
-      <mat-select>
+      <mat-select formControlName="topic">
         <mat-option value="Option">Option</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Titre de l'article</mat-label>
-      <input matInput type="text" />
+      <input matInput type="text" formControlName="title" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Contenu de l'article</mat-label>
-      <textarea rows="8" matInput></textarea>
+      <textarea rows="8" matInput formControlName="content"></textarea>
     </mat-form-field>
     <app-button [type]="'submit'" [label]="'Créer'"></app-button>
   </form>

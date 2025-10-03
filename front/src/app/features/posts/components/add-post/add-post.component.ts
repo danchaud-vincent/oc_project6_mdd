@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonBackwardComponent } from '../../../../shared/components/button-backward/button-backward.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -19,8 +19,20 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
   templateUrl: './add-post.component.html',
   styleUrl: './add-post.component.scss',
 })
-export class AddPostComponent {
+export class AddPostComponent implements OnInit {
+  addPostForm!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.addPostForm = this.formBuilder.group({
+      topic: [null],
+      title: [null],
+      content: [null],
+    });
+  }
+
   onSubmitForm() {
-    console.log('Hello create');
+    console.log(this.addPostForm.value);
   }
 }
