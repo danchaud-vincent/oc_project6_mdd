@@ -23,4 +23,9 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./features/posts/posts.routes').then((r) => r.POSTS_ROUTES),
   },
+  {
+    path: 'topics',
+    loadChildren: () =>
+      import('./features/topics/topics.routes').then((r) => r.TOPICS_ROUTES),
+  },
 ];
