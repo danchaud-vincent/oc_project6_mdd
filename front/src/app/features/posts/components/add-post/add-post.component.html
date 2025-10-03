@@ -1,0 +1,23 @@
+<div class="add-post-container">
+  <app-button-backward></app-button-backward>
+  <form (ngSubmit)="onCreatePost()">
+    <h2>Créer un nouvel article</h2>
+    <mat-form-field>
+      <mat-label>Sélectionner un thème</mat-label>
+      <mat-select>
+        <mat-option value="Option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Titre de l'article</mat-label>
+      <input matInput type="text" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contenu de l'article</mat-label>
+      <input matInput type="text" />
+    </mat-form-field>
+    <div class="btns-actions">
+      <button type="submit">Créer</button>
+    </div>
+  </form>
+</div>
