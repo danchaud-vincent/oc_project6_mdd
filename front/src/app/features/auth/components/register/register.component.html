@@ -2,17 +2,27 @@
 <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
   <div class="form-row">
     <label>Nom d'utilisateur</label>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>vincent danchaud</mat-label>
-      <input matInput type="text" formControlName="username" />
+      <input
+        matInput
+        type="text"
+        placeholder="vincent danchaud"
+        formControlName="username"
+      />
       <mat-error>Ce champs est requis</mat-error>
     </mat-form-field>
   </div>
   <div class="form-row">
     <label>Adresse email</label>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>example&#64;email.com</mat-label>
-      <input matInput type="email" formControlName="email" />
+      <input
+        matInput
+        type="email"
+        placeholder="example&#64;email.com"
+        formControlName="email"
+      />
       <mat-error>{{
         getFormControlErrorText(registerForm.controls["email"])
       }}</mat-error>
@@ -20,9 +30,14 @@
   </div>
   <div class="form-row">
     <label>Mot de passe</label>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Exemple123!</mat-label>
-      <input matInput type="password" formControlName="password" />
+      <input
+        matInput
+        type="password"
+        placeholder="Exemple123!"
+        formControlName="password"
+      />
       <mat-error>{{
         getFormControlErrorText(registerForm.controls["password"])
       }}</mat-error>
