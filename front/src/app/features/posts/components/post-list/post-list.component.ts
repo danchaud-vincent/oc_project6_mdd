@@ -5,6 +5,7 @@ import { PostsService } from '../../services/posts.service';
 import { AsyncPipe } from '@angular/common';
 import { PostListItemComponent } from '../post-list-item/post-list-item.component';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-list',
@@ -15,9 +16,13 @@ import { MatIconModule } from '@angular/material/icon';
 export class PostListComponent implements OnInit {
   posts$!: Observable<Post[]>;
 
-  constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService, private router: Router) {}
 
   ngOnInit(): void {
     this.posts$ = this.postsService.getPosts();
+  }
+
+  onCreatePost() {
+    this.router.navigateByUrl('/posts/create');
   }
 }
