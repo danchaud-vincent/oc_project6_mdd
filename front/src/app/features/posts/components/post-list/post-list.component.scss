@@ -1,3 +1,5 @@
+@use "@angular/material" as mat;
+
 .posts-wrapper {
   width: 90%;
   margin: 0 auto;
@@ -15,11 +17,44 @@
   gap: 1em;
 }
 
+/* buttons */
+.btns-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    font-size: var(--fs-s);
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 1em;
+  }
+
+  .btn-create-post {
+    color: white;
+    background-color: var(--main-color);
+    padding: 1em 2em;
+  }
+
+  .btn-filter {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+  }
+}
+
 /* ===============================
    DESKTOP (min-width: 600px)
 =============================== */
 @media (min-width: 768px) {
   .posts-container {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* buttons */
+  .btns-actions {
+    display: flex;
+    flex-direction: row;
   }
 }

@@ -5,6 +5,11 @@ mat-card {
   justify-content: space-between;
 }
 
+mat-card:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 10px black;
+}
+
 mat-card-header {
   display: flex;
   flex-direction: column;
