@@ -68,4 +68,22 @@ public class TopicService {
         return topicMapper.toDto(userSaved.getTopics());
     }
 
+    public void unsubscribe(Integer topicId, Authentication authentication) {
+        // Get user principal
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+        String emailPrincipal = jwt.getClaim("sub");
+
+        User userPrincipal = userRepository.findByEmail(emailPrincipal)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("User with email %s Not Found", emailPrincipal)));
+
+        // Find topic
+        Topic topic = topicRepository.findById(topicId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Topic with ID %s Not Found", topicId)));
+
+        // add topic to user
+        userPrincipal.getTopics().remove(topic);
+        userRepository.save(userPrincipal);
+    }
+
 }
