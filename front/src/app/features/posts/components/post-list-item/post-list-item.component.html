@@ -1,19 +1,15 @@
-<mat-card (click)="viewSinglePost()">
-  <mat-card-header>
-    <mat-card-title>{{ post.title }}</mat-card-title>
+<app-card (click)="viewSinglePost()">
+  <div title>{{ post.title }}</div>
+  <div subtitle>
     <div class="subtitles-wrapper">
-      <mat-card-subtitle>
-        <span>Date: {{ post.createdAt | date : "dd/MM/YYYY" }}</span>
-      </mat-card-subtitle>
-      <mat-card-subtitle>
-        <span>Auteur: {{ post.authorName }}</span>
-      </mat-card-subtitle>
+      <span>Date: {{ post.createdAt | date : "dd/MM/YYYY" }}</span>
+      <span>Auteur: {{ post.authorName }}</span>
     </div>
-  </mat-card-header>
-  <mat-card-content>
+  </div>
+  <div content>
     <p>Content :</p>
     <p>
       {{ post.content }}
     </p>
-  </mat-card-content>
-</mat-card>
+  </div>
+</app-card>

@@ -3,10 +3,11 @@ import { MatCardModule } from '@angular/material/card';
 import { Post } from '../../models/post.model';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { CardComponent } from '../../../../shared/components/card/card.component';
 
 @Component({
   selector: 'app-post-list-item',
-  imports: [MatCardModule, DatePipe],
+  imports: [MatCardModule, DatePipe, CardComponent],
   templateUrl: './post-list-item.component.html',
   styleUrl: './post-list-item.component.scss',
 })
@@ -16,7 +17,6 @@ export class PostListItemComponent {
   constructor(private router: Router) {}
 
   viewSinglePost(): void {
-    console.log('View a single post', this.post);
     this.router.navigateByUrl(`/posts/${this.post.id}`);
   }
 }
