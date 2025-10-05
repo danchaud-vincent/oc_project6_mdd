@@ -31,9 +31,17 @@ public class TopicController {
     private final TopicService topicService;
 
     @GetMapping()
-    public ResponseEntity<List<TopicDTO>> getTopics(Authentication authentication) {
+    public ResponseEntity<List<TopicDTO>> getTopics() {
 
-        Collection<TopicDTO> topicsDTO = topicService.getTopics(authentication);
+        Collection<TopicDTO> topicsDTO = topicService.getTopics();
+
+        return new ResponseEntity<List<TopicDTO>>(new ArrayList<>(topicsDTO), HttpStatus.OK);
+    }
+
+    @GetMapping("/subscriptions")
+    public ResponseEntity<List<TopicDTO>> getSubscribedTopic(Authentication authentication) {
+
+        Collection<TopicDTO> topicsDTO = topicService.getSubscribedTopic(authentication);
 
         return new ResponseEntity<List<TopicDTO>>(new ArrayList<>(topicsDTO), HttpStatus.OK);
     }
