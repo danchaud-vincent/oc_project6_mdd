@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.orion.mdd.dto.TopicDTO;
 import com.orion.mdd.payload.request.TopicRequest;
+import com.orion.mdd.payload.response.MessageResponse;
 import com.orion.mdd.service.TopicService;
 
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,6 +52,16 @@ public class TopicController {
         Collection<TopicDTO> topicsDTO = topicService.subscribeToTopic(topicId, authentication);
 
         return new ResponseEntity<List<TopicDTO>>(new ArrayList<>(topicsDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{topicId}/unsubscribe")
+    public ResponseEntity<MessageResponse> unsubscribe(@PathVariable Integer topicId, Authentication authentication) {
+
+        topicService.unsubscribe(topicId, authentication);
+
+        return new ResponseEntity<MessageResponse>(
+                new MessageResponse(String.format("Unsubscribed from the topic ID %s", topicId)),
+                HttpStatus.OK);
     }
 
 }
