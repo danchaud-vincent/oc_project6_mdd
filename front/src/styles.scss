@@ -32,6 +32,12 @@ body {
   box-sizing: inherit;
 }
 
+p {
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 /* ===============================
    VARIABLES
 =============================== */
