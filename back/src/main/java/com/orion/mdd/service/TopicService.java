@@ -25,7 +25,14 @@ public class TopicService {
     private final UserRepository userRepository;
     private final TopicMapper topicMapper;
 
-    public Collection<TopicDTO> getTopics(Authentication authentication) {
+    public Collection<TopicDTO> getTopics() {
+
+        Collection<Topic> topics = topicRepository.findAll();
+
+        return topicMapper.toDto(topics);
+    }
+
+    public Collection<TopicDTO> getSubscribedTopic(Authentication authentication) {
 
         // get User principal
         Jwt jwt = (Jwt) authentication.getPrincipal();
