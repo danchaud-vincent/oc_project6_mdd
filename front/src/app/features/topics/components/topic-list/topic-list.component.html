@@ -1,1 +1,5 @@
-<p>topic-list works!</p>
+<div class="topics-container">
+  @for (topic of topics$ | async; track topic.id) {
+  <app-topic-list-item [topic]="topic"></app-topic-list-item>
+  }
+</div>

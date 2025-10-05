@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Topic } from '../../models/topic.model';
+import { CardComponent } from '../../../../shared/components/card/card.component';
 
 @Component({
   selector: 'app-topic-list-item',
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './topic-list-item.component.html',
-  styleUrl: './topic-list-item.component.scss'
+  styleUrl: './topic-list-item.component.scss',
 })
 export class TopicListItemComponent {
-
+  @Input() topic!: Topic;
 }
