@@ -9,8 +9,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { passwordValidator } from '../../../auth/validators/password.validator';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Me } from '../../models/me.model';
+import { MeService } from '../../services/me.service';
 
 @Component({
   selector: 'app-me',
@@ -25,9 +26,8 @@ import { Me } from '../../models/me.model';
 })
 export class MeComponent implements OnInit {
   meForm!: FormGroup;
-  me$!: Observable<Me>;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private meService: MeService) {}
 
   ngOnInit(): void {
     this.meForm = this.formBuilder.group({
@@ -35,5 +35,17 @@ export class MeComponent implements OnInit {
       email: [null, [Validators.required]],
       password: [null, [Validators.required, passwordValidator()]],
     });
+
+    this.meService
+      .getMe()
+      .pipe(
+        tap((value) =>
+          this.meForm.patchValue({
+            username: value.username,
+            email: value.email,
+          })
+        )
+      )
+      .subscribe();
   }
 }
