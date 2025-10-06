@@ -27,7 +27,11 @@
         >
       </li>
       <li>
-        <a class="nav-link" routerLink="/"
+        <a
+          class="nav-link"
+          routerLink="/me"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
           ><mat-icon class="icon">person</mat-icon></a
         >
       </li>
