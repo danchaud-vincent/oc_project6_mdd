@@ -55,6 +55,10 @@
 
 .active {
   color: var(--main-color);
+
+  .icon {
+    border-color: var(--main-color);
+  }
 }
 
 /** ICON **/
