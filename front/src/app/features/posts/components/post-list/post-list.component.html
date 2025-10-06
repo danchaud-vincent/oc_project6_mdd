@@ -1,17 +1,15 @@
-<div class="posts-wrapper">
-  <div class="btns-actions">
-    <button class="btn-create-post" (click)="onCreatePost()">
-      Créer article
-    </button>
-    <button class="btn-filter">
-      Trier par<mat-icon>arrow_downward</mat-icon>
-    </button>
-  </div>
+<div class="btns-actions">
+  <button class="btn-create-post" (click)="onCreatePost()">
+    Créer article
+  </button>
+  <button class="btn-filter">
+    Trier par<mat-icon>arrow_downward</mat-icon>
+  </button>
+</div>
 
-  <div class="posts-container">
-    @for (post of posts$ | async; track post.id) {
+<div class="posts-container">
+  @for (post of posts$ | async; track post.id) {
 
-    <app-post-list-item [post]="post"></app-post-list-item>
-    }
-  </div>
+  <app-post-list-item [post]="post"></app-post-list-item>
+  }
 </div>
