@@ -8,7 +8,9 @@
       placeholder="username"
       formControlName="username"
     />
-    <mat-error>Ce champs est requis</mat-error>
+    <mat-error>{{
+      getFormControlErrorText(meForm.controls["username"])
+    }}</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
@@ -18,7 +20,9 @@
       placeholder="email@example.com"
       formControlName="email"
     />
-    <mat-error>Ce champs est requis</mat-error>
+    <mat-error>{{
+      getFormControlErrorText(meForm.controls["email"])
+    }}</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
@@ -28,7 +32,9 @@
       placeholder="Exemple123!"
       formControlName="password"
     />
-    <mat-error>Ce champs est requis</mat-error>
+    <mat-error>{{
+      getFormControlErrorText(meForm.controls["password"])
+    }}</mat-error>
   </mat-form-field>
   <app-button
     type="submit"
