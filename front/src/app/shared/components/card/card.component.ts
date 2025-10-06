@@ -5,6 +5,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-card',
@@ -14,10 +15,11 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class CardComponent implements AfterContentInit {
   hasActions = false;
-
-  @ContentChildren('actions', { descendants: true }) actions!: QueryList<any>;
+  @ContentChildren(ButtonComponent) items!: QueryList<ButtonComponent>;
 
   ngAfterContentInit(): void {
-    this.hasActions = this.actions.length > 0;
+    if (this.items.length > 0) {
+      this.hasActions = true;
+    }
   }
 }
