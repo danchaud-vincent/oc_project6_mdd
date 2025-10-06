@@ -12,6 +12,7 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 import { Observable, tap } from 'rxjs';
 import { Me } from '../../models/me.model';
 import { MeService } from '../../services/me.service';
+import { MeUpdateRequest } from '../../models/meUpdateRequest.model';
 
 @Component({
   selector: 'app-me',
@@ -45,6 +46,19 @@ export class MeComponent implements OnInit {
             email: value.email,
           })
         )
+      )
+      .subscribe();
+  }
+
+  onSubmitForm() {
+    const meUpdateRequest: MeUpdateRequest = this.meForm.value;
+
+    this.meService
+      .updateMeInfo(meUpdateRequest)
+      .pipe(
+        tap((newUserSessionInfo) => {
+          console.log(newUserSessionInfo);
+        })
       )
       .subscribe();
   }

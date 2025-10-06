@@ -1,4 +1,4 @@
-<form [formGroup]="meForm">
+<form [formGroup]="meForm" (ngSubmit)="onSubmitForm()">
   <h2>Profil utilisateur</h2>
   <mat-form-field appearance="outline">
     <mat-label>Username</mat-label>
