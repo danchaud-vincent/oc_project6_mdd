@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -17,6 +17,8 @@ import { RouterOutlet } from '@angular/router';
     MatIconModule,
     AsyncPipe,
     RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './layout-with-headers.component.html',
   styleUrl: './layout-with-headers.component.scss',

@@ -13,13 +13,32 @@
   >
     <mat-nav-list>
       <mat-list-item class="logout">
-        <a class="nav-link" routerLink="/"> Se déconnecter </a>
+        <a
+          class="nav-link"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Se déconnecter
+        </a>
       </mat-list-item>
       <mat-list-item>
-        <a class="nav-link article" routerLink="/">Articles</a>
+        <a
+          class="nav-link article"
+          routerLink="/posts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Articles</a
+        >
       </mat-list-item>
       <mat-list-item>
-        <a class="nav-link theme" routerLink="/">Thèmes</a>
+        <a
+          class="nav-link theme"
+          routerLink="/topics"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Thèmes</a
+        >
       </mat-list-item>
       <mat-list-item class="profile">
         <a class="nav-link" routerLink="/"
