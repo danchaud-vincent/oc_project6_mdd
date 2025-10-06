@@ -7,6 +7,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { UserSessionService } from '../../services/user-session.service';
 
 @Component({
   selector: 'app-header',
@@ -26,4 +27,10 @@ import { AsyncPipe } from '@angular/common';
 export class HeaderComponent {
   @Input() matSidenav!: MatSidenav;
   @Input() isMobile$!: Observable<boolean>;
+
+  constructor(private userSessionService: UserSessionService) {}
+
+  logout() {
+    this.userSessionService.logout();
+  }
 }
