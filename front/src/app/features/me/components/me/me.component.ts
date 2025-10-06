@@ -16,6 +16,7 @@ import { Me } from '../../models/me.model';
 import { MeService } from '../../services/me.service';
 import { MeUpdateRequest } from '../../models/meUpdateRequest.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TopicListComponent } from '../../../topics/components/topic-list/topic-list.component';
 
 @Component({
   selector: 'app-me',
@@ -24,6 +25,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     ButtonComponent,
+    TopicListComponent,
   ],
   templateUrl: './me.component.html',
   styleUrl: './me.component.scss',
