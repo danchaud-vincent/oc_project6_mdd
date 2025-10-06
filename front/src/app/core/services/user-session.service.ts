@@ -7,16 +7,16 @@ import { TokenService } from './token.service';
   providedIn: 'root',
 })
 export class UserSessionService {
-  private userSessionInfo: UserSessionInfo | undefined;
-  private isLogged = false;
-  private isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);
+  private isLoggedSubject = new BehaviorSubject<boolean>(false);
+  private userSessionSubject = new BehaviorSubject<UserSessionInfo | null>(
+    null
+  );
 
   constructor(private tokenService: TokenService) {
     const token = tokenService.getToken();
 
     if (token) {
-      this.isLogged = true;
-      this.isLoggedSubject.next(this.isLogged);
+      this.isLoggedSubject.next(true);
     }
   }
 
@@ -24,17 +24,26 @@ export class UserSessionService {
     return this.isLoggedSubject.asObservable();
   }
 
+  public getUserSessionInfo$(): Observable<UserSessionInfo | null> {
+    return this.userSessionSubject.asObservable();
+  }
+
   public login(userInfo: UserSessionInfo): void {
-    this.userSessionInfo = userInfo;
     this.tokenService.setToken(userInfo.token);
-    this.isLogged = true;
-    this.isLoggedSubject.next(this.isLogged);
+    this.isLoggedSubject.next(true);
+    this.userSessionSubject.next(userInfo);
   }
 
   public logout(): void {
-    this.userSessionInfo = undefined;
     this.tokenService.removeToken();
-    this.isLogged = false;
-    this.isLoggedSubject.next(this.isLogged);
+    this.isLoggedSubject.next(false);
+    this.userSessionSubject.next(null);
+  }
+
+  public updateUserSessionInfo(newUserSessionInfo: UserSessionInfo): void {
+    this.tokenService.removeToken();
+    this.tokenService.setToken(newUserSessionInfo.token);
+    this.isLoggedSubject.next(true);
+    this.userSessionSubject.next(newUserSessionInfo);
   }
 }
