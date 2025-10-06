@@ -32,18 +32,6 @@ mat-sidenav {
       }
     }
   }
-
-  /* log out */
-  mat-list-item.logout {
-    a {
-      color: red;
-    }
-
-    &:hover {
-      text-decoration: underline;
-      color: red;
-    }
-  }
 }
 
 /* ===============================
@@ -54,6 +42,24 @@ mat-sidenav {
 .nav-link {
   text-decoration: none;
   color: black;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: var(--main-color);
+  }
+}
+
+/* log out */
+.logout {
+  color: red;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: underline;
+    color: red;
+  }
 }
 
 .active {

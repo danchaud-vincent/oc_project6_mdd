@@ -22,10 +22,16 @@
     list-style-type: none;
     padding: 0;
   }
+}
 
-  .nav-link:hover,
-  .nav-link:focus,
-  .nav-link:active {
+/** LINKS **/
+.nav-link {
+  text-decoration: none;
+  color: black;
+
+  &:hover,
+  &:focus,
+  &:active {
     color: var(--main-color);
 
     .icon {
@@ -34,10 +40,17 @@
   }
 }
 
-/** LINKS **/
-.nav-link {
-  text-decoration: none;
-  color: black;
+/* log out */
+.logout {
+  color: red;
+  font-size: 0.75em;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: underline;
+    color: red;
+  }
 }
 
 .active {

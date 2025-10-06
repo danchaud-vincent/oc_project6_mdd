@@ -10,6 +10,16 @@
     <ul>
       <li>
         <a
+          class="nav-link logout"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Se déconnecter
+        </a>
+      </li>
+      <li>
+        <a
           class="nav-link"
           routerLink="/posts"
           routerLinkActive="active"
