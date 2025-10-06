@@ -7,6 +7,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { UserSessionService } from '../../../services/user-session.service';
 
 @Component({
   selector: 'app-layout',
@@ -27,7 +28,10 @@ export class LayoutWithHeadersComponent implements OnInit {
   isMobile$!: Observable<boolean>;
   fixedTopGap$!: Observable<number>;
 
-  constructor(private breakPointObserver: BreakpointObserver) {}
+  constructor(
+    private breakPointObserver: BreakpointObserver,
+    private userSessionService: UserSessionService
+  ) {}
 
   ngOnInit(): void {
     this.isMobile$ = this.breakPointObserver
@@ -37,5 +41,9 @@ export class LayoutWithHeadersComponent implements OnInit {
     this.fixedTopGap$ = this.isMobile$.pipe(
       map((isMobile) => (isMobile ? 56 : 64))
     );
+  }
+
+  logout() {
+    this.userSessionService.logout();
   }
 }
