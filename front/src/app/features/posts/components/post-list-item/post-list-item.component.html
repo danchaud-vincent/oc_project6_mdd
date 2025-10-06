@@ -1,4 +1,4 @@
-<app-card (click)="viewSinglePost()">
+<app-card [clickable]="true" (click)="viewSinglePost()">
   <div title>{{ post.title }}</div>
   <div subtitle>
     <div class="subtitles-wrapper">
