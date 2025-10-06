@@ -1,0 +1,29 @@
+@use "@angular/material" as mat;
+
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 2em;
+  }
+
+  @include mat.form-field-overrides(
+    (
+      outline-color: var(--main-color),
+      outline-width: 2px,
+    )
+  );
+}
+
+/* ===============================
+   DESKTOP (min-width: 600px)
+=============================== */
+@media (min-width: 600px) {
+  form {
+    width: 50%;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+}

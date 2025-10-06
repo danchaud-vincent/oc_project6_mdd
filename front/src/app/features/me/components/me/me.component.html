@@ -1,1 +1,38 @@
-<p>me works!</p>
+<form [formGroup]="meForm">
+  <h2>Profil utilisateur</h2>
+  <mat-form-field appearance="outline">
+    <mat-label>Username</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="username"
+      formControlName="username"
+    />
+    <mat-error>Ce champs est requis</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      type="email"
+      placeholder="email@example.com"
+      formControlName="email"
+    />
+    <mat-error>Ce champs est requis</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      type="password"
+      placeholder="Exemple123!"
+      formControlName="password"
+    />
+    <mat-error>Ce champs est requis</mat-error>
+  </mat-form-field>
+  <app-button
+    type="submit"
+    label="Sauvegarder"
+    [disabled]="meForm.invalid"
+  ></app-button>
+</form>
