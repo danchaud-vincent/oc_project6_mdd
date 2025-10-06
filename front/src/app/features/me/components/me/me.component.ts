@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { passwordValidator } from '../../../auth/validators/password.validator';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { Observable } from 'rxjs';
+import { Me } from '../../models/me.model';
 
 @Component({
   selector: 'app-me',
@@ -23,6 +25,7 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 })
 export class MeComponent implements OnInit {
   meForm!: FormGroup;
+  me$!: Observable<Me>;
 
   constructor(private formBuilder: FormBuilder) {}
 
