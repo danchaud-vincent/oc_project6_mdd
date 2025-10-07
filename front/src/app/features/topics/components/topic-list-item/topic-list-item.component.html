@@ -8,6 +8,7 @@
   </div>
   <app-button
     actions
-    [label]="topic.isSubscribed ? 'Déjà abonné' : `S'abonner`"
+    [label]="getSubscriptionLabel()"
+    [disabled]="isDisabled()"
   ></app-button>
 </app-card>
