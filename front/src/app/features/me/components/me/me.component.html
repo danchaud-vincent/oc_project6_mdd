@@ -43,7 +43,11 @@
   ></app-button>
 </form>
 
-<div class="topics-subscribed-container">
+<div class="topics-container">
   <h1>Abonnements</h1>
-  <app-topic-list></app-topic-list>
+  <div class="topics-subscribed-container">
+    @for (topic of topicsSubscribed$ | async; track topic.id) {
+    <app-topic-list-item [topic]="topic"></app-topic-list-item>
+    }
+  </div>
 </div>

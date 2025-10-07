@@ -11,12 +11,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { passwordValidator } from '../../../auth/validators/password.validator';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { Me } from '../../models/me.model';
 import { MeService } from '../../services/me.service';
 import { MeUpdateRequest } from '../../models/meUpdateRequest.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TopicListComponent } from '../../../topics/components/topic-list/topic-list.component';
+import { TopicListItemComponent } from '../../../topics/components/topic-list-item/topic-list-item.component';
+import { Topic } from '../../../topics/models/topic.model';
+import { TopicsService } from '../../../topics/services/topics.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-me',
@@ -25,7 +29,8 @@ import { TopicListComponent } from '../../../topics/components/topic-list/topic-
     MatFormFieldModule,
     MatInputModule,
     ButtonComponent,
-    TopicListComponent,
+    TopicListItemComponent,
+    AsyncPipe,
   ],
   templateUrl: './me.component.html',
   styleUrl: './me.component.scss',
@@ -34,10 +39,12 @@ export class MeComponent implements OnInit {
   @ViewChild(FormGroupDirective) formDirective!: FormGroupDirective;
 
   meForm!: FormGroup;
+  topicsSubscribed$!: Observable<Topic[]>;
 
   constructor(
     private formBuilder: FormBuilder,
     private meService: MeService,
+    private topicsService: TopicsService,
     private matSnackBar: MatSnackBar
   ) {}
 
@@ -59,6 +66,14 @@ export class MeComponent implements OnInit {
         )
       )
       .subscribe();
+
+    this.topicsSubscribed$ = this.topicsService.getTopicsSubscriptions().pipe(
+      map((topics) => {
+        return topics.map((topic) => {
+          return { ...topic, isSubscribed: true };
+        });
+      })
+    );
   }
 
   onSubmitForm() {
