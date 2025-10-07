@@ -19,4 +19,18 @@ export class TopicsService {
       `${environment.baseUrl}/topics/subscriptions`
     );
   }
+
+  subscribe(topicId: number): Observable<Topic[]> {
+    return this.http.post<Topic[]>(
+      `${environment.baseUrl}/topics/${topicId}/subscribe`,
+      {}
+    );
+  }
+
+  unsubscribe(topicId: number): Observable<Topic[]> {
+    return this.http.post<Topic[]>(
+      `${environment.baseUrl}/topics/${topicId}/unsubscribe`,
+      {}
+    );
+  }
 }
