@@ -18,7 +18,9 @@
       </p>
     </section>
     <section class="article-comments">
-      <p>Commentaires</p>
+      @if (comments$ | async; as comments) {
+      <app-comments-list [comments]="comments"></app-comments-list>
+      }
     </section>
   </article>
   }

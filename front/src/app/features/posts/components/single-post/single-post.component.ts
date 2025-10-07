@@ -5,23 +5,34 @@ import { Observable } from 'rxjs';
 import { PostsService } from '../../services/posts.service';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe, DatePipe } from '@angular/common';
+import { CommentsListComponent } from '../../../../shared/components/comments/components/comments-list/comments-list.component';
+import { CommentsService } from '../../services/comments.service';
+import { Comment } from '../../../../shared/components/comments/models/comment.model';
 
 @Component({
   selector: 'app-single-post',
-  imports: [ButtonBackwardComponent, AsyncPipe, DatePipe],
+  imports: [
+    ButtonBackwardComponent,
+    AsyncPipe,
+    DatePipe,
+    CommentsListComponent,
+  ],
   templateUrl: './single-post.component.html',
   styleUrl: './single-post.component.scss',
 })
 export class SinglePostComponent implements OnInit {
   post$!: Observable<Post>;
+  comments$!: Observable<Comment[]>;
 
   constructor(
     private postsService: PostsService,
+    private commentsService: CommentsService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     const postId = this.route.snapshot.params['id'];
     this.post$ = this.postsService.getPostById(postId);
+    this.comments$ = this.commentsService.getCommentsByPost(postId);
   }
 }
