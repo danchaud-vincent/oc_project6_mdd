@@ -9,7 +9,7 @@
   <div content>
     <p>Content :</p>
     <p>
-      {{ post.content }}
+      {{ post.content | shorten : 100 }}
     </p>
   </div>
 </app-card>
