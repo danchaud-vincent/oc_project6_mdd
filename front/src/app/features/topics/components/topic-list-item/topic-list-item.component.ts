@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Topic } from '../../models/topic.model';
 import { CardComponent } from '../../../../shared/components/card/card.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { TopicsService } from '../../services/topics.service';
 
 @Component({
   selector: 'app-topic-list-item',
@@ -12,6 +13,9 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 export class TopicListItemComponent {
   @Input() topic!: Topic;
   @Input() isUserProfile: boolean = false;
+  @Output() subscriptionEvent = new EventEmitter<Topic>();
+
+  constructor(private topicsService: TopicsService) {}
 
   getSubscriptionLabel(): string {
     if (this.isUserProfile && this.topic.isSubscribed) {
@@ -31,5 +35,9 @@ export class TopicListItemComponent {
     }
 
     return false;
+  }
+
+  onClick(): void {
+    this.subscriptionEvent.emit(this.topic);
   }
 }
