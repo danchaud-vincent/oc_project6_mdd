@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin, map, Observable, switchMap } from 'rxjs';
+import { forkJoin, map, Observable, switchMap, tap } from 'rxjs';
 import { Topic } from '../../models/topic.model';
 import { TopicsService } from '../../services/topics.service';
 import { AsyncPipe } from '@angular/common';
@@ -18,6 +18,10 @@ export class TopicListComponent implements OnInit {
   constructor(private topicsService: TopicsService) {}
 
   ngOnInit(): void {
+    this.loadTopics();
+  }
+
+  loadTopics(): void {
     this.topics$ = forkJoin({
       topics: this.topicsService.getTopics(),
       subscriptions: (this.topicsSubscribed$ =
@@ -34,5 +38,19 @@ export class TopicListComponent implements OnInit {
         });
       })
     );
+  }
+
+  onSubscription(topic: Topic) {
+    if (topic.isSubscribed) {
+      this.topicsService
+        .unsubscribe(topic.id)
+        .pipe(tap(() => this.loadTopics()))
+        .subscribe();
+    } else {
+      this.topicsService
+        .subscribe(topic.id)
+        .pipe(tap(() => this.loadTopics()))
+        .subscribe();
+    }
   }
 }
