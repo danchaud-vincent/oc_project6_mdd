@@ -50,6 +50,7 @@
     <app-topic-list-item
       [topic]="topic"
       [isUserProfile]="true"
+      (subscriptionEvent)="onSubscription($event)"
     ></app-topic-list-item>
     }
   </div>

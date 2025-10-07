@@ -49,6 +49,7 @@ export class MeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // SET UP AND FILL THE FORM
     this.meForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       email: ['', [Validators.required]],
@@ -67,6 +68,11 @@ export class MeComponent implements OnInit {
       )
       .subscribe();
 
+    // LOAD THE TOPICS
+    this.loadTopics();
+  }
+
+  loadTopics(): void {
     this.topicsSubscribed$ = this.topicsService.getTopicsSubscriptions().pipe(
       map((topics) => {
         return topics.map((topic) => {
@@ -74,6 +80,20 @@ export class MeComponent implements OnInit {
         });
       })
     );
+  }
+
+  onSubscription(topic: Topic) {
+    if (topic.isSubscribed) {
+      this.topicsService
+        .unsubscribe(topic.id)
+        .pipe(tap(() => this.loadTopics()))
+        .subscribe();
+    } else {
+      this.topicsService
+        .subscribe(topic.id)
+        .pipe(tap(() => this.loadTopics()))
+        .subscribe();
+    }
   }
 
   onSubmitForm() {
