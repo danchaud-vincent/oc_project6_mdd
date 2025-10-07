@@ -13,4 +13,10 @@ export class TopicsService {
   getTopics(): Observable<Topic[]> {
     return this.http.get<Topic[]>(`${environment.baseUrl}/topics`);
   }
+
+  getTopicsSubscriptions(): Observable<Topic[]> {
+    return this.http.get<Topic[]>(
+      `${environment.baseUrl}/topics/subscriptions`
+    );
+  }
 }
