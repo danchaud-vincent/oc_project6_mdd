@@ -10,7 +10,5 @@ export class ShortenPipe implements PipeTransform {
     } else {
       return value.substring(0, maxLength) + '...';
     }
-
-    return value;
   }
 }
