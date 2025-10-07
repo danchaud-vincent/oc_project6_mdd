@@ -16,7 +16,7 @@ import { ButtonComponent } from '../button/button.component';
   styleUrl: './card.component.scss',
 })
 export class CardComponent implements AfterContentInit {
-  hasActions = true;
+  hasActions = false;
   @ContentChildren(ButtonComponent) items!: QueryList<ButtonComponent>;
   @Input() clickable = false;
 
