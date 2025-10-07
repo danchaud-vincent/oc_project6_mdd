@@ -27,10 +27,9 @@ export class TopicsService {
     );
   }
 
-  unsubscribe(topicId: number): Observable<Topic[]> {
-    return this.http.post<Topic[]>(
-      `${environment.baseUrl}/topics/${topicId}/unsubscribe`,
-      {}
+  unsubscribe(topicId: number): Observable<any> {
+    return this.http.delete<Topic[]>(
+      `${environment.baseUrl}/topics/${topicId}/unsubscribe`
     );
   }
 }
