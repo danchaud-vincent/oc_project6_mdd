@@ -1,9 +1,10 @@
-<form>
-  <mat-form-field appearance="outline" class="full-width">
+<form [formGroup]="addComment" (ngSubmit)="onSubmitForm()">
+  <mat-form-field appearance="outline">
     <mat-label>Contenu du commentaire</mat-label>
-    <textarea matInput rows="4"></textarea>
+    <textarea matInput rows="4" formControlName="comment"></textarea>
+    <mat-error>Ce champs est requis</mat-error>
   </mat-form-field>
-  <button>
+  <button type="submit">
     <mat-icon>send</mat-icon>
   </button>
 </form>
