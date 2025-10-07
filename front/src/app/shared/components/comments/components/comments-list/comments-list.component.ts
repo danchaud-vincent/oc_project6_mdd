@@ -3,10 +3,11 @@ import { MatListModule } from '@angular/material/list';
 import { Comment } from '../../models/comment.model';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DatePipe } from '@angular/common';
+import { AddCommentComponent } from '../add-comment/add-comment.component';
 
 @Component({
   selector: 'app-comments-list',
-  imports: [MatListModule, MatGridListModule, DatePipe],
+  imports: [MatListModule, MatGridListModule, DatePipe, AddCommentComponent],
   templateUrl: './comments-list.component.html',
   styleUrl: './comments-list.component.scss',
 })

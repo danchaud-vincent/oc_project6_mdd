@@ -35,6 +35,14 @@
     padding: 1em;
   }
 }
+
+.add-comment-container {
+  margin-top: 3em;
+
+  app-add-comment {
+    width: 100%;
+  }
+}
 /* ===============================
    DESKTOP (min-width: 600px)
 =============================== */

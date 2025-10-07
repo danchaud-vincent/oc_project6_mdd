@@ -1,0 +1,20 @@
+form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+mat-form-field {
+  width: 80%;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  transform: rotate(-45deg);
+
+  mat-icon {
+    color: var(--main-color);
+    transform: scale(1.5);
+  }
+}
