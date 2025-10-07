@@ -6,5 +6,8 @@
       {{ topic.description }}
     </p>
   </div>
-  <app-button actions [label]="'sabonner'"></app-button>
+  <app-button
+    actions
+    [label]="topic.isSubscribed ? 'Déjà abonné' : `S'abonner`"
+  ></app-button>
 </app-card>
