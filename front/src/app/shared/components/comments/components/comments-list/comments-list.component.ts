@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { Comment } from '../../models/comment.model';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -13,4 +13,9 @@ import { AddCommentComponent } from '../add-comment/add-comment.component';
 })
 export class CommentsListComponent {
   @Input() comments!: Comment[];
+  @Output() newCommentAdded = new EventEmitter<string>();
+
+  onNewComment(commentValue: string) {
+    this.newCommentAdded.emit(commentValue);
+  }
 }
