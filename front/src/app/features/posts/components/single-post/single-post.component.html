@@ -19,7 +19,10 @@
     </section>
     <section class="article-comments">
       @if (comments$ | async; as comments) {
-      <app-comments-list [comments]="comments"></app-comments-list>
+      <app-comments-list
+        [comments]="comments"
+        (newCommentAdded)="onPostCommented($event)"
+      ></app-comments-list>
       }
     </section>
   </article>
