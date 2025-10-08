@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { passwordValidator } from '../../../auth/validators/password.validator';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
 import { Me } from '../../models/me.model';
 import { MeService } from '../../services/me.service';
 import { MeUpdateRequest } from '../../models/meUpdateRequest.model';
@@ -69,11 +69,11 @@ export class MeComponent implements OnInit {
       .subscribe();
 
     // LOAD THE TOPICS
-    this.loadTopics();
+    this.topicsSubscribed$ = this.loadTopics();
   }
 
-  loadTopics(): void {
-    this.topicsSubscribed$ = this.topicsService.getTopicsSubscriptions().pipe(
+  loadTopics(): Observable<Topic[]> {
+    return this.topicsService.getTopicsSubscriptions().pipe(
       map((topics) => {
         return topics.map((topic) => {
           return { ...topic, isSubscribed: true };
@@ -84,15 +84,13 @@ export class MeComponent implements OnInit {
 
   onSubscription(topic: Topic) {
     if (topic.isSubscribed) {
-      this.topicsService
+      this.topicsSubscribed$ = this.topicsService
         .unsubscribe(topic.id)
-        .pipe(tap(() => this.loadTopics()))
-        .subscribe();
+        .pipe(switchMap(() => this.loadTopics()));
     } else {
-      this.topicsService
+      this.topicsSubscribed$ = this.topicsService
         .subscribe(topic.id)
-        .pipe(tap(() => this.loadTopics()))
-        .subscribe();
+        .pipe(switchMap(() => this.loadTopics()));
     }
   }
 
