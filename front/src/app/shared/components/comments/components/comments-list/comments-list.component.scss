@@ -1,5 +1,8 @@
 .comments-container {
   margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .comments-title {
@@ -30,6 +33,7 @@
   border-radius: 1em;
   flex: 1;
   background-color: lightgray;
+  width: 100%;
 
   p {
     padding: 1em;
