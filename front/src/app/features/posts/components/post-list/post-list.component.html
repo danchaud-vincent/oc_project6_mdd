@@ -3,7 +3,7 @@
     Créer un article
   </button>
   <button class="btn-filter" (click)="onSort()">
-    Trier par @if(sort){
+    Trier par @if(!sortStatus){
     <mat-icon>arrow_upward</mat-icon>
     }@else{
     <mat-icon>arrow_downward</mat-icon>
