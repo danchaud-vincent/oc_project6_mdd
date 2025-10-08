@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ButtonBackwardComponent } from '../../../../shared/components/button-backward/button-backward.component';
 import { Post } from '../../models/post.model';
-import { catchError, Observable, of, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import { PostsService } from '../../services/posts.service';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe, DatePipe } from '@angular/common';
@@ -34,7 +34,20 @@ export class SinglePostComponent implements OnInit {
   ngOnInit(): void {
     const postId = this.route.snapshot.params['id'];
     this.post$ = this.postsService.getPostById(postId);
-    this.comments$ = this.commentsService.getCommentsByPost(postId);
+    this.comments$ = this.commentsService.getCommentsByPost(postId).pipe(
+      map((comments) => {
+        const sorted = [...comments].sort((commentA, commentB) => {
+          const dateA = new Date(commentA.createdAt);
+          const dateB = new Date(commentB.createdAt);
+
+          if (dateA.getTime() === dateB.getTime()) return 0;
+
+          return dateB.getTime() - dateA.getTime();
+        });
+
+        return sorted;
+      })
+    );
   }
 
   onPostCommented(newCommentValue: string) {
