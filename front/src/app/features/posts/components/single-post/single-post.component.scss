@@ -2,12 +2,16 @@
    MOBILE (max-width: 599px)
 =============================== */
 .single-post-container {
+  width: 90%;
+  margin: 2em auto 0;
+
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin: 2em auto 0;
   gap: 2em;
-  width: 90%;
+}
+
+article {
+  flex: auto;
 }
 
 .article-meta {
@@ -27,8 +31,8 @@
 =============================== */
 @media (min-width: 600px) {
   .single-post-container {
-    flex-direction: row;
     width: 70%;
+    flex-direction: row;
   }
   .article-meta {
     grid-template-columns: repeat(3, 1fr);
