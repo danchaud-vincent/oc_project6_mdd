@@ -37,7 +37,7 @@ Otherwise, the tests are available and can be execute without the backend runnin
 **1. Clone the application**
 
 ```bash
-git clone https://github.com/danchaud-vincent/oc_project5_testing.git
+git clone https://github.com/danchaud-vincent/oc_project6_mdd.git
 ```
 
 **2. Go inside the front folder (from the project root)**
@@ -61,7 +61,7 @@ npm run start
 or
 
 ```bash
-npx ng serve --open
+ng serve --open
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
