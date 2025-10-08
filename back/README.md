@@ -1,6 +1,6 @@
 # BACK : MDD APPLICATION
 
-This backend project was generated using[Spring Initializr](https://start.spring.io/).
+This backend project was generated using [Spring Initializr](https://start.spring.io/).
 It uses Spring Boot for application configuration and management, Maven for dependency management, and Java 21 as the runtime environment.
 
 ## Project Description
@@ -67,8 +67,8 @@ export JwtKey=your_jwtKey
 **using cmd:**
 
 ```cmd
-set DB_HOST=localhost
-set DB_PORT=3306
+set DB_HOST=your_db_host
+set DB_PORT=your_db_port
 set DB_NAME=your_db_name
 set DB_USERNAME=your_database_username
 set DB_PASSWORD=your_database_password
