@@ -101,7 +101,7 @@ mvn spring-boot:run
 
 For Postman import the collection
 
-> ressources/postman/yoga.postman_collection.json
+> ressources/postman/MDD.postman_collection.json
 
 by following the documentation:
 
