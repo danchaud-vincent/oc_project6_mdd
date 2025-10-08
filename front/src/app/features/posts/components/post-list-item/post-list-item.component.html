@@ -2,14 +2,13 @@
   <div title>{{ post.title }}</div>
   <div subtitle>
     <div class="subtitles-wrapper">
-      <span>Date: {{ post.createdAt | date : "dd/MM/YYYY" }}</span>
-      <span>Auteur: {{ post.authorName }}</span>
+      <time [dateTime]="post.createdAt">{{
+        post.createdAt | date : "dd/MM/YYYY"
+      }}</time>
+      <span>{{ post.authorName }}</span>
     </div>
   </div>
   <div content>
-    <p>Content :</p>
-    <p>
-      {{ post.content | shorten : 100 }}
-    </p>
+    <p>Content: {{ post.content | shorten : 100 }}</p>
   </div>
 </app-card>

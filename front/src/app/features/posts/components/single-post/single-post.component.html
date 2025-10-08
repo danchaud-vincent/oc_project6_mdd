@@ -5,17 +5,15 @@
     <h2>{{ post.title }}</h2>
     <div class="article-meta">
       <p>
-        Date:
-        <time datetime="">{{ post.createdAt | date : "dd/MM/YYYY" }}</time>
+        <time [dateTime]="post.createdAt">{{
+          post.createdAt | date : "dd/MM/YYYY"
+        }}</time>
       </p>
-      <p>Auteur: {{ post.authorName }}</p>
-      <p>Thème: {{ post.topicName }}</p>
+      <p>{{ post.authorName }}</p>
+      <p>{{ post.topicName }}</p>
     </div>
     <section class="article-content">
-      <p>
-        <span>Content:</span>
-        {{ post.content }}
-      </p>
+      <p>Content: {{ post.content }}</p>
     </section>
     <section class="article-comments">
       @if (comments$ | async; as comments) {
