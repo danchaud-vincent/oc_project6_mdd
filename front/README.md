@@ -84,7 +84,7 @@ For more information on using the Angular CLI, including detailed command refere
 
 For Postman import the collection
 
-> ressources/postman/yoga.postman_collection.json
+> ressources/postman/MDD.postman_collection.json
 
 by following the documentation:
 
