@@ -1,30 +1,70 @@
-# Front
+# Front : MDD APPLICATION
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
 
-## Development server
+## Project Description
 
-To start a local development server, run:
+This MVP application allows users to subscribe to programming-related topics (such as JavaScript, Java, Python, Web3, etc.).  
+The news feed displays relevant articles in chronological order. Users can also write articles and post comments.
+
+### Project Goals
+
+The goal of this project is to develop a **Minimum Viable Product (MVP)**.  
+The backend is built with **Spring Boot**, and the frontend is developed using **Angular**.
+
+As this is an MVP, automated tests have not been implemented yet. Testing will be included in future iterations.
+
+## Installation :
+
+> Note: The path front is relative to the root of the project (where you cloned the repo), not your current directory.
+
+Before running the project, make sur your environment meets the following requirements:
+
+### Prerequisites :
+
+- [**Java**](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) version 21
+- [**Node.js**](https://nodejs.org/en) version 22
+- [**Angular CLI**](https://github.com/angular/angular-cli) version 19.2
+- [**MySQL**](https://www.mysql.com/) (for the backend database)
+
+### Setps to Setup
+
+**0. Before running the frontend**
+
+To use the app, make sure that the backend server is started before starting the frontend.
+Otherwise, the tests are available and can be execute without the backend running. [See this section](#tests)
+
+**1. Clone the application**
 
 ```bash
-ng serve
+git clone https://github.com/danchaud-vincent/oc_project5_testing.git
+```
+
+**2. Go inside the front folder (from the project root)**
+
+```bash
+cd front
+```
+
+**3. Install dependencies**
+
+```bash
+npm install
+```
+
+**4. To start a local development server, run:**
+
+```bash
+npm run start
+```
+
+or
+
+```bash
+npx ng serve --open
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
 
 ## Building
 
@@ -36,24 +76,20 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+### Postman collection
+
+For Postman import the collection
+
+> ressources/postman/yoga.postman_collection.json
+
+by following the documentation:
+
+https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-data-into-postman
+
+## Author :
+
+**Danchaud Vincent**
