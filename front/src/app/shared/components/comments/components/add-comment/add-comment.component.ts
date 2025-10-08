@@ -28,6 +28,7 @@ export class AddCommentComponent implements OnInit {
   }
 
   onSubmitForm(): void {
-    console.log(this.addComment.value.comment);
+    const commentValue: string = this.addComment.value.comment;
+    this.newComment.emit(commentValue);
   }
 }
