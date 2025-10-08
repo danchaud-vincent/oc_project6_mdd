@@ -72,9 +72,27 @@ public class DataInitializer implements CommandLineRunner {
                                 .description("All about SQL and NoSQL databases")
                                 .build();
 
+                Topic topic4 = Topic.builder()
+                                .name("Python")
+                                .description("Python, programming languages, OOP, etc.")
+                                .build();
+
+                Topic topic5 = Topic.builder()
+                                .name("HTML/CSS")
+                                .description("All about HTML and CSS")
+                                .build();
+
+                Topic topic6 = Topic.builder()
+                                .name("Javascript")
+                                .description("Learn to master JS with a bootcamp")
+                                .build();
+
                 topicRepo.save(topic1);
                 topicRepo.save(topic2);
                 topicRepo.save(topic3);
+                topicRepo.save(topic4);
+                topicRepo.save(topic5);
+                topicRepo.save(topic6);
 
                 // user subscriptions
                 user1.getTopics().addAll(List.of(topic1, topic2));
@@ -88,31 +106,40 @@ public class DataInitializer implements CommandLineRunner {
                 // ADD POSTS
                 Post post1 = Post.builder()
                                 .title("Getting started with Spring Boot")
-                                .content("Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...")
-                                .createdAt(LocalDateTime.now())
+                                .content("lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...")
+                                .createdAt(LocalDateTime.of(2023, 5, 12, 10, 30, 0))
                                 .author(user1)
                                 .topic(topic1)
                                 .build();
 
                 Post post2 = Post.builder()
                                 .title("Java Streams")
-                                .content("Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...")
-                                .createdAt(LocalDateTime.now())
+                                .content("lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...")
+                                .createdAt(LocalDateTime.of(2025, 4, 26, 10, 11, 0))
                                 .author(user2)
                                 .topic(topic2)
                                 .build();
 
                 Post post3 = Post.builder()
                                 .title("Choosing the right database")
-                                .content("Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...")
-                                .createdAt(LocalDateTime.now())
+                                .content("lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...")
+                                .createdAt(LocalDateTime.of(2025, 1, 05, 15, 30, 0))
                                 .author(user3)
                                 .topic(topic3)
+                                .build();
+
+                Post post4 = Post.builder()
+                                .title("HTML/CSS Best bootcamps")
+                                .content("lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...")
+                                .createdAt(LocalDateTime.of(2024, 12, 5, 20, 30, 0))
+                                .author(user3)
+                                .topic(topic5)
                                 .build();
 
                 postRepo.save(post1);
                 postRepo.save(post2);
                 postRepo.save(post3);
+                postRepo.save(post4);
 
                 // ADD COMMENTS
                 Comment comment1 = Comment.builder()
