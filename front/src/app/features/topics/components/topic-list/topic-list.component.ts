@@ -18,11 +18,11 @@ export class TopicListComponent implements OnInit {
   constructor(private topicsService: TopicsService) {}
 
   ngOnInit(): void {
-    this.loadTopics();
+    this.topics$ = this.loadTopics();
   }
 
-  loadTopics(): void {
-    this.topics$ = forkJoin({
+  loadTopics(): Observable<Topic[]> {
+    return forkJoin({
       topics: this.topicsService.getTopics(),
       subscriptions: (this.topicsSubscribed$ =
         this.topicsService.getTopicsSubscriptions()),
@@ -42,15 +42,13 @@ export class TopicListComponent implements OnInit {
 
   onSubscription(topic: Topic) {
     if (topic.isSubscribed) {
-      this.topicsService
+      this.topics$ = this.topicsService
         .unsubscribe(topic.id)
-        .pipe(tap(() => this.loadTopics()))
-        .subscribe();
+        .pipe(switchMap(() => this.loadTopics()));
     } else {
-      this.topicsService
+      this.topics$ = this.topicsService
         .subscribe(topic.id)
-        .pipe(tap(() => this.loadTopics()))
-        .subscribe();
+        .pipe(switchMap(() => this.loadTopics()));
     }
   }
 }
