@@ -34,7 +34,7 @@ As this is an MVP, automated tests have not been implemented yet. Testing will b
 
 For Postman import the collection
 
-> ressources/postman/yoga.postman_collection.json
+> ressources/postman/MDD.postman_collection.json
 
 by following the documentation:
 
