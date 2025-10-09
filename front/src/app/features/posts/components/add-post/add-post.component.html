@@ -1,0 +1,30 @@
+<div class="add-post-container">
+  <app-button-backward></app-button-backward>
+  <form [formGroup]="addPostForm" (ngSubmit)="onSubmitForm()">
+    <h2>Créer un nouvel article</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Sélectionner un thème</mat-label>
+      <mat-select formControlName="topic">
+        @for (topic of topics$ | async; track topic.id) {
+        <mat-option [value]="topic.id">{{ topic.name }}</mat-option>
+        }
+      </mat-select>
+      <mat-error>Ce champs est requis</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Titre de l'article</mat-label>
+      <input matInput type="text" formControlName="title" />
+      <mat-error>Ce champs est requis</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Contenu de l'article</mat-label>
+      <textarea rows="8" matInput formControlName="content"></textarea>
+      <mat-error>Ce champs est requis</mat-error>
+    </mat-form-field>
+    <app-button
+      [type]="'submit'"
+      [label]="'Créer'"
+      [disabled]="addPostForm.invalid"
+    ></app-button>
+  </form>
+</div>

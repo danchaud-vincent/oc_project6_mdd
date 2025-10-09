@@ -1,0 +1,40 @@
+/* FORM */
+.form-row {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: 500;
+    margin-bottom: 0.5em;
+  }
+}
+
+.btns-actions {
+  text-align: center;
+
+  button {
+    font-size: var(--fs-s);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 1em 3em;
+    border: none;
+    border-radius: 1em;
+    color: white;
+    background-color: var(--main-color);
+  }
+
+  button:disabled {
+    background-color: lightgray;
+  }
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.error-message {
+  color: red;
+  margin-top: 1em;
+  text-align: center;
+}

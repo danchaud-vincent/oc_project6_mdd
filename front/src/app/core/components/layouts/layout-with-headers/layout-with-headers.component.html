@@ -1,0 +1,60 @@
+<!-- Header toolbar -->
+<app-header [matSidenav]="snav" [isMobile$]="isMobile$"></app-header>
+
+<mat-sidenav-container [style.marginTop.px]="fixedTopGap$ | async">
+  <!-- sideNavBar -->
+  <mat-sidenav
+    #snav
+    mode="over"
+    [opened]="isMobile$ | async"
+    position="end"
+    [fixedInViewport]="true"
+    [fixedTopGap]="fixedTopGap$ | async"
+  >
+    <mat-nav-list>
+      <mat-list-item>
+        <a
+          class="nav-link logout"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="logout()"
+        >
+          Se déconnecter
+        </a>
+      </mat-list-item>
+      <mat-list-item>
+        <a
+          class="nav-link article"
+          routerLink="/posts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Articles</a
+        >
+      </mat-list-item>
+      <mat-list-item>
+        <a
+          class="nav-link theme"
+          routerLink="/topics"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Thèmes</a
+        >
+      </mat-list-item>
+      <mat-list-item class="profile">
+        <a
+          class="nav-link"
+          routerLink="/me"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ><mat-icon class="icon">person</mat-icon></a
+        >
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main Content -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

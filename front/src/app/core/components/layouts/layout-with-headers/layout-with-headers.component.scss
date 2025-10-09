@@ -1,0 +1,101 @@
+/* ===============================
+   MAT SIDENAV
+=============================== */
+mat-sidenav-container {
+  width: 100%;
+}
+
+mat-sidenav-content {
+  width: 90%;
+  margin: 2em auto;
+}
+
+mat-sidenav-container,
+mat-sidenav-content {
+  min-height: calc(100vh - 56px);
+}
+
+mat-sidenav {
+  padding: 1em 0;
+  text-align: right;
+  width: 70%;
+
+  /* Profile */
+  mat-list-item.profile {
+    display: flex;
+    position: absolute;
+    bottom: 5px;
+
+    a {
+      display: flex;
+      justify-content: end;
+    }
+
+    &:hover {
+      color: var(--main-color);
+
+      .icon {
+        color: var(--main-color);
+        border-color: var(--main-color);
+      }
+    }
+  }
+}
+
+/* ===============================
+   GLOBAL
+=============================== */
+
+/** LINKS **/
+.nav-link {
+  text-decoration: none;
+  color: black;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: var(--main-color);
+
+    .icon {
+      border-color: var(--main-color);
+    }
+  }
+}
+
+/* log out */
+.logout {
+  color: red;
+  font-weight: bold;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: red;
+  }
+}
+
+.active {
+  color: var(--main-color);
+
+  .icon {
+    border-color: var(--main-color);
+  }
+}
+
+/** ICON **/
+.icon {
+  border: 2px solid black;
+  border-radius: 50%;
+  padding: 0.75em; // 18px
+  background-color: lightgray;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/** Typographie **/
+.article,
+.theme {
+  font-size: var(--fs-m);
+}

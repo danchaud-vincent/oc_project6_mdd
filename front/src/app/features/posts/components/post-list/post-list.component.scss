@@ -1,0 +1,57 @@
+@use "@angular/material" as mat;
+
+.btns-actions {
+  display: flex;
+  margin-bottom: 1em;
+  gap: 1em;
+}
+
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1em;
+  grid-auto-rows: 1fr;
+}
+
+/* buttons */
+.btns-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    font-size: var(--fs-s);
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 1em;
+  }
+
+  .btn-create-post {
+    color: white;
+    background-color: var(--main-color);
+    padding: 1em 2em;
+  }
+
+  .btn-filter {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+  }
+}
+
+/* ===============================
+   DESKTOP (min-width: 600px)
+=============================== */
+@media (min-width: 768px) {
+  .posts-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* buttons */
+  .btns-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

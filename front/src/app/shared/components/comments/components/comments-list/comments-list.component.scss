@@ -1,0 +1,60 @@
+.comments-container {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.comments-title {
+  margin-bottom: 1em;
+}
+
+.comment-container {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 1em;
+}
+
+.comment-author,
+.comment-date {
+  display: block;
+}
+
+.comment-author {
+  font-weight: 500;
+}
+.comment-date {
+  color: gray;
+  font-style: italic;
+}
+
+.comment-content {
+  border-radius: 1em;
+  flex: 1;
+  background-color: #eeeeee;
+  width: 100%;
+
+  p {
+    padding: 1em;
+  }
+}
+
+.add-comment-container {
+  margin-top: 3em;
+
+  app-add-comment {
+    width: 100%;
+  }
+}
+/* ===============================
+   DESKTOP (min-width: 600px)
+=============================== */
+@media (min-width: 600px) {
+  .comment-container {
+    flex-direction: row;
+    align-items: start;
+  }
+}

@@ -1,0 +1,15 @@
+<app-card [clickable]="false">
+  <div title>{{ topic.name }}</div>
+  <div content>
+    <p>Description :</p>
+    <p>
+      {{ topic.description }}
+    </p>
+  </div>
+  <app-button
+    actions
+    [label]="getSubscriptionLabel()"
+    [disabled]="isDisabled()"
+    (click)="onClick()"
+  ></app-button>
+</app-card>

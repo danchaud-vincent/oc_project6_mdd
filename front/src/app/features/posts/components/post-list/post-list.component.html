@@ -1,0 +1,19 @@
+<div class="btns-actions">
+  <button class="btn-create-post" (click)="onCreatePost()">
+    Créer un article
+  </button>
+  <button class="btn-filter" (click)="onSort()">
+    Trier par @if(!sortStatus){
+    <mat-icon>arrow_upward</mat-icon>
+    }@else{
+    <mat-icon>arrow_downward</mat-icon>
+    }
+  </button>
+</div>
+
+<div class="posts-container">
+  @for (post of posts$ | async; track post.id) {
+
+  <app-post-list-item [post]="post"></app-post-list-item>
+  }
+</div>

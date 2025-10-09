@@ -1,0 +1,34 @@
+@use "@angular/material" as mat;
+
+form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+mat-form-field {
+  width: 80%;
+
+  @include mat.form-field-overrides(
+    (
+      outline-color: var(--main-color),
+      outline-width: 2px,
+    )
+  );
+}
+
+:host ::ng-deep .mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 20px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transform: rotate(-45deg);
+
+  mat-icon {
+    color: var(--main-color);
+    transform: scale(1.5);
+  }
+}

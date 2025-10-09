@@ -1,0 +1,14 @@
+<app-card [clickable]="true" (click)="viewSinglePost()">
+  <div title>{{ post.title }}</div>
+  <div subtitle>
+    <div class="subtitles-wrapper">
+      <time [dateTime]="post.createdAt">{{
+        post.createdAt | date : "dd/MM/YYYY"
+      }}</time>
+      <span>{{ post.authorName }}</span>
+    </div>
+  </div>
+  <div content>
+    <p>Content: {{ post.content | shorten : 100 }}</p>
+  </div>
+</app-card>

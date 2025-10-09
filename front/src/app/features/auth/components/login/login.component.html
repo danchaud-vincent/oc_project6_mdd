@@ -1,0 +1,38 @@
+<h1>Se connecter</h1>
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <div class="form-row">
+    <label>E-mail ou nom d'utilisateur</label>
+    <mat-form-field appearance="outline">
+      <mat-label>example&#64;email.com</mat-label>
+      <input
+        matInput
+        type="email"
+        placeholder="example&#64;email.com"
+        formControlName="email"
+      />
+      <mat-error>{{
+        getFormControlErrorText(loginForm.controls["email"])
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-row">
+    <label>Mot de passe</label>
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input
+        matInput
+        type="password"
+        placeholder="Mot de passe"
+        formControlName="password"
+      />
+      <mat-error>Ce champs est requis</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="btns-actions">
+    <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+  </div>
+
+  @if (errorMessage) {
+  <div class="error-message">{{ errorMessage }}</div>
+  }
+</form>

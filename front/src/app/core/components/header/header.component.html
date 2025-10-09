@@ -1,0 +1,52 @@
+<mat-toolbar class="header-toolbar">
+  <img class="header-logo" src="assets/images/mdd.png" alt="MDD logo" />
+
+  @if (isMobile$ | async) {
+  <button mat-icon-button (click)="matSidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  } @else {
+  <nav>
+    <ul>
+      <li>
+        <a
+          class="nav-link logout"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="logout()"
+        >
+          Se déconnecter
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav-link"
+          routerLink="/posts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Articles</a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link"
+          routerLink="/topics"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Thèmes</a
+        >
+      </li>
+      <li>
+        <a
+          class="nav-link"
+          routerLink="/me"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ><mat-icon class="icon">person</mat-icon></a
+        >
+      </li>
+    </ul>
+  </nav>
+  }
+</mat-toolbar>

@@ -1,0 +1,14 @@
+button {
+  font-size: var(--fs-s);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 1em 3em;
+  border: none;
+  border-radius: 1em;
+  color: white;
+  background-color: var(--main-color);
+}
+
+button:disabled {
+  background-color: lightgray;
+}
