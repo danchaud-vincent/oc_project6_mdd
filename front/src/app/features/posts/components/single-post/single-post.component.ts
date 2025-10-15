@@ -24,6 +24,7 @@ import { CommentRequest } from '../../models/commentRequest.model';
 export class SinglePostComponent implements OnInit {
   post$!: Observable<Post>;
   comments$!: Observable<Comment[]>;
+  isDescending: boolean = true;
 
   constructor(
     private postsService: PostsService,
@@ -34,19 +35,9 @@ export class SinglePostComponent implements OnInit {
   ngOnInit(): void {
     const postId = this.route.snapshot.params['id'];
     this.post$ = this.postsService.getPostById(postId);
-    this.comments$ = this.commentsService.getCommentsByPost(postId).pipe(
-      map((comments) => {
-        const sorted = [...comments].sort((commentA, commentB) => {
-          const dateA = new Date(commentA.createdAt);
-          const dateB = new Date(commentB.createdAt);
-
-          if (dateA.getTime() === dateB.getTime()) return 0;
-
-          return dateB.getTime() - dateA.getTime();
-        });
-
-        return sorted;
-      })
+    this.comments$ = this.commentsService.sortComments(
+      postId,
+      this.isDescending
     );
   }
 
@@ -57,7 +48,9 @@ export class SinglePostComponent implements OnInit {
     this.comments$ = this.commentsService
       .addCommentToPost(postId, commentRequest)
       .pipe(
-        switchMap(() => this.commentsService.getCommentsByPost(postId)),
+        switchMap(() =>
+          this.commentsService.sortComments(postId, this.isDescending)
+        ),
         catchError((err) => {
           console.error("Erreur lors de l'ajout du commentaire: ", err);
           return of([]);
