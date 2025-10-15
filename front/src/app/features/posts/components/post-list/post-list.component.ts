@@ -17,39 +17,20 @@ import { FormsModule } from '@angular/forms';
 export class PostListComponent implements OnInit {
   posts$!: Observable<Post[]>;
   filterBy!: string;
-  sortStatus: boolean = true;
+  isDescending: boolean = true;
 
   constructor(private postsService: PostsService, private router: Router) {}
 
   ngOnInit(): void {
-    this.posts$ = this.sortPosts(this.sortStatus);
+    this.posts$ = this.postsService.sortPosts(this.isDescending);
   }
 
   onCreatePost() {
     this.router.navigateByUrl('/posts/create');
   }
 
-  sortPosts(sortStatus: boolean): Observable<Post[]> {
-    return this.postsService.getPosts().pipe(
-      map((posts) => {
-        const sorted = [...posts].sort((postA, postB) => {
-          const dateA = new Date(postA.createdAt);
-          const dateB = new Date(postB.createdAt);
-
-          if (dateA.getTime() === dateB.getTime()) return 0;
-
-          return sortStatus
-            ? dateB.getTime() - dateA.getTime()
-            : dateA.getTime() - dateB.getTime();
-        });
-
-        return sorted;
-      })
-    );
-  }
-
   onSort(): void {
-    this.sortStatus = !this.sortStatus;
-    this.posts$ = this.sortPosts(this.sortStatus);
+    this.isDescending = !this.isDescending;
+    this.posts$ = this.postsService.sortPosts(this.isDescending);
   }
 }
