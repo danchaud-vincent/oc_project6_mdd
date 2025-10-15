@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -23,12 +24,35 @@ export class AddCommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.addComment = this.formBuilder.group({
-      comment: [null, [Validators.required]],
+      comment: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.pattern(/.*\S.*/),
+        ],
+      ],
     });
   }
 
   onSubmitForm(): void {
-    const commentValue: string = this.addComment.value.comment;
+    if (this.addComment.invalid) {
+      this.addComment.markAllAsTouched();
+      return;
+    }
+
+    const commentValue: string = this.addComment.value.comment.trim();
     this.newComment.emit(commentValue);
+    this.addComment.reset();
+  }
+
+  getFormControlErrorText(ctrl: AbstractControl): string {
+    if (ctrl.hasError('required')) {
+      return 'Ce champs est requis';
+    } else if (ctrl.hasError('minlength')) {
+      return 'Le commentaire doit posséder au minimum 5 caractères';
+    } else {
+      return 'Ce champs contient une erreur';
+    }
   }
 }

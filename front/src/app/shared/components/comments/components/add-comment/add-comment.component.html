@@ -2,7 +2,9 @@
   <mat-form-field appearance="outline">
     <mat-label>Contenu du commentaire</mat-label>
     <textarea matInput rows="4" formControlName="comment"></textarea>
-    <mat-error>Ce champs est requis</mat-error>
+    <mat-error>{{
+      getFormControlErrorText(addComment.controls["comment"])
+    }}</mat-error>
   </mat-form-field>
   <button type="submit">
     <mat-icon>send</mat-icon>
